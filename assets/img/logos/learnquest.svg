@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 130 32" height="32">
+  <!-- LQ mark -->
+  <rect x="0" y="2" width="26" height="26" rx="5" fill="#1a3a6b"/>
+  <text x="5" y="21" font-family="Arial, sans-serif" font-weight="800" font-size="15" fill="white">LQ</text>
+  <!-- Wordmark -->
+  <text x="34" y="21" font-family="Arial, sans-serif" font-weight="600" font-size="13" fill="#1a3a6b">LearnQuest</text>
+</svg>
