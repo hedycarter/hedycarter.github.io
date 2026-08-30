@@ -165,6 +165,31 @@ h1, h2, h3, h4, h5, h6 {
   text-decoration: none;
 }
 
+/* Sidebar status indicator */
+.sidebar-status {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.42);
+  margin: 8px 0 0;
+  font-family: "Inter", sans-serif;
+  letter-spacing: 0.02em;
+}
+.status-dot {
+  width: 7px;
+  height: 7px;
+  min-width: 7px;
+  border-radius: 50%;
+  background: #22c55e;
+  animation: status-pulse 2.5s ease-in-out infinite;
+}
+@keyframes status-pulse {
+  0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.5); }
+  50% { opacity: 0.7; box-shadow: 0 0 0 4px rgba(34, 197, 94, 0); }
+}
+
 #main {
   margin-left: 300px;
 }
@@ -663,6 +688,355 @@ section {
   transform: translateY(-2px);
   color: #fff !important;
 }
+
+/* GitHub Contribution Chart */
+.github-stats-row {
+  margin: 20px 0 24px;
+}
+.github-chart-wrapper {
+  background: #f9fbfd;
+  border: 1px solid #e8edf5;
+  border-radius: 10px;
+  padding: 16px 20px;
+}
+.github-chart-label {
+  font-size: 13px;
+  color: #8f9bb3;
+  font-family: "Inter", sans-serif;
+  margin-bottom: 12px;
+}
+.github-chart-label i {
+  font-size: 16px;
+  margin-right: 5px;
+  vertical-align: middle;
+  color: #172b4d;
+}
+.github-chart-label a {
+  color: #149ddd;
+  font-weight: 600;
+}
+.github-chart-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 4px;
+}
+
+/*--------------------------------------------------------------
+# Certifications
+--------------------------------------------------------------*/
+.certifications { padding: 60px 0; }
+.cert-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+}
+@media (max-width: 768px) { .cert-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 480px) { .cert-grid { grid-template-columns: 1fr; } }
+
+/* ── Flip wrapper ── */
+.cert-tile {
+  height: 200px;
+  perspective: 1000px;
+  cursor: pointer;
+}
+.cert-flip {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.cert-tile:hover .cert-flip {
+  transform: rotateY(180deg);
+}
+.cert-front,
+.cert-back {
+  position: absolute;
+  inset: 0;
+  border-radius: 14px;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  overflow: hidden;
+}
+.cert-back {
+  transform: rotateY(180deg);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 18px 16px 15px;
+  gap: 8px;
+}
+
+/* ── Front faces (reprennent les styles existants) ── */
+.cert-front {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 16px 15px 14px;
+}
+
+/* ── Back face — contenu ── */
+.cert-back-label {
+  font-size: 8px;
+  font-family: "Inter", sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin: 0;
+  opacity: 0.7;
+  color: white;
+}
+.cert-back-title {
+  font-size: 17px;
+  font-weight: 800;
+  font-family: "Poppins", sans-serif;
+  letter-spacing: -0.02em;
+  margin: 0;
+  color: white;
+  line-height: 1.2;
+  flex: 1;
+}
+.cert-back-sub {
+  font-size: 10px;
+  font-family: "Inter", sans-serif;
+  line-height: 1.6;
+  margin: 0;
+  color: rgba(255,255,255,0.75);
+}
+.cert-back-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 10px;
+  border-top: 1px solid rgba(255,255,255,0.2);
+  font-size: 11px;
+  font-family: "Inter", sans-serif;
+  color: rgba(255,255,255,0.7);
+  font-weight: 600;
+}
+.cert-back-link {
+  font-size: 10px;
+  font-weight: 700;
+  color: white !important;
+  text-decoration: none !important;
+  background: rgba(255,255,255,0.2);
+  border: 1px solid rgba(255,255,255,0.4);
+  border-radius: 50px;
+  padding: 3px 10px;
+  transition: background 0.18s;
+  white-space: nowrap;
+}
+.cert-back-link:hover { background: rgba(255,255,255,0.35); }
+.cert-back-link i { font-size: 8px; margin-left: 2px; }
+.cert-back-badge {
+  font-size: 10px;
+  font-weight: 600;
+  color: rgba(255,255,255,0.8);
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+
+/* ── Back colors ── */
+.cert-back--learnquest {
+  background: linear-gradient(145deg, #1a3a6b 0%, #0d2247 100%);
+}
+.cert-back--alberta {
+  background: linear-gradient(145deg, #005a2e 0%, #003d1e 100%);
+}
+.cert-back--simplon {
+  background: linear-gradient(145deg, #ce0033 0%, #8f0022 100%);
+}
+.cert-back--orange {
+  background: linear-gradient(145deg, #e55a00 0%, #b34400 100%);
+}
+
+/* ── Shared front content styles ── */
+.cert-label {
+  font-size: 8px;
+  font-family: "Inter", sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin: 0;
+}
+.cert-tile-logos { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; }
+.cert-logo-chip {
+  background: #fff;
+  border-radius: 6px;
+  padding: 4px 9px;
+  display: inline-flex;
+  align-items: center;
+  min-height: 26px;
+  box-shadow: 0 1px 6px rgba(0,0,0,0.1);
+}
+.cert-logo-chip img { height: 13px; width: auto; max-width: 72px; object-fit: contain; display: block; }
+.cert-tile-title { margin: 0; line-height: 1.2; flex: 1; }
+
+/* ── Nom du titulaire sur chaque certificat ── */
+.cert-recipient {
+  margin: 0;
+  line-height: 1.2;
+}
+/* LearnQuest — Georgia italic, élégant comme le vrai cert */
+.cert-recipient--lq {
+  font-family: Georgia, "Times New Roman", serif;
+  font-style: italic;
+  font-size: 15px;
+  font-weight: 400;
+  color: #1a2f4a;
+  letter-spacing: 0.01em;
+}
+/* Alberta — majuscules tracées, formel */
+.cert-recipient--alberta {
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: 700;
+  font-size: 11px;
+  color: #004020;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+/* Simplon — bold rouge, moderne */
+.cert-recipient--simplon {
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  font-size: 13px;
+  color: #ce0033;
+  position: relative;
+  z-index: 1;
+}
+/* Orange — semi-bold, propre */
+.cert-recipient--orange {
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
+  font-size: 13px;
+  color: #7a3200;
+  letter-spacing: 0.01em;
+}
+.cert-tile-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 10px;
+  border-top: 1px solid rgba(0,0,0,0.07);
+  gap: 4px;
+  margin-top: auto;
+}
+.cert-tile-year { font-size: 11px; font-family: "Inter", sans-serif; font-variant-numeric: tabular-nums; }
+.cert-physical { font-size: 10px; font-weight: 600; font-family: "Inter", sans-serif; display: flex; align-items: center; gap: 3px; }
+.cert-tile-sub { font-size: 10px; color: #8f9bb3; font-family: "Inter", sans-serif; margin: -4px 0 0; line-height: 1.3; }
+.cert-distinction { font-size: 10px; font-style: italic; color: #007C41; font-family: "Georgia", serif; margin: -4px 0 0; }
+
+/* ── 1. LearnQuest front ── */
+.cert-tile--learnquest .cert-front {
+  background: #ffffff;
+  border: 1px solid #d0d5dd;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+  flex-direction: row;
+  gap: 0;
+  padding: 0;
+}
+.cert-tile--learnquest .cert-body {
+  flex: 1;
+  padding: 15px 13px 13px;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  min-width: 0;
+}
+.cert-tile--learnquest .cert-label { color: #7a8899; }
+.cert-tile--learnquest .cert-tile-title { font-size: 14px; font-weight: 700; color: #1a3a6b; font-family: "Poppins", sans-serif; letter-spacing: -0.01em; }
+.cert-tile--learnquest .cert-tile-year { color: #8f9bb3; }
+.cert-tile--learnquest .cert-tile-footer { border-top-color: #e8edf5; }
+.cert-ribbon {
+  width: 64px;
+  flex-shrink: 0;
+  background: linear-gradient(180deg, #dde3eb 0%, #c5cdd8 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 14px 8px;
+  border-radius: 0 14px 14px 0;
+}
+.cert-ribbon-title { font-size: 7.5px; font-weight: 800; letter-spacing: 0.07em; text-transform: uppercase; color: #4a5a6a; text-align: center; font-family: "Inter", sans-serif; margin: 0; line-height: 1.4; }
+.cert-ribbon-seal { width: 42px; height: 42px; border-radius: 50%; border: 1.5px solid #8899aa; background: rgba(255,255,255,0.35); display: flex; align-items: center; justify-content: center; padding: 7px; }
+.cert-ribbon-seal img { height: 13px; width: auto; filter: saturate(0.8); }
+
+/* ── 2. Alberta front ── */
+.cert-tile--alberta .cert-front {
+  background: #f5f0e3;
+  border: 1.5px solid #007C41;
+  box-shadow: 0 2px 12px rgba(0,124,65,0.1);
+}
+.cert-tile--alberta .cert-front::before {
+  content: '';
+  position: absolute;
+  inset: 5px;
+  border: 1px solid rgba(0,124,65,0.25);
+  border-radius: 10px;
+  pointer-events: none;
+}
+.cert-tile--alberta .cert-label { color: rgba(0,124,65,0.65); font-family: "Georgia", serif; letter-spacing: 0.06em; }
+.cert-tile--alberta .cert-tile-title { font-size: 14px; font-weight: 700; color: #005a2e; font-family: "Georgia", serif; }
+.cert-tile--alberta .cert-logo-chip { box-shadow: none; border: 1px solid rgba(0,124,65,0.2); background: rgba(255,255,255,0.8); }
+.cert-tile--alberta .cert-tile-year { color: rgba(0,124,65,0.6); }
+.cert-tile--alberta .cert-tile-footer { border-top-color: rgba(0,124,65,0.15); }
+
+/* ── 3. Simplon front ── */
+.cert-tile--simplon .cert-front {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 2px 12px rgba(206,0,51,0.07);
+  overflow: hidden;
+}
+.cert-tile--simplon .cert-front::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 42px; height: 42px;
+  background: #ce0033;
+  clip-path: polygon(0 0, 100% 0, 0 100%);
+}
+.cert-tile--simplon .cert-front::after {
+  content: '';
+  position: absolute;
+  bottom: 0; right: 0;
+  width: 42px; height: 42px;
+  background: #ce0033;
+  clip-path: polygon(100% 0, 100% 100%, 0 100%);
+}
+.cert-tile--simplon .cert-label { color: rgba(206,0,51,0.55); position: relative; z-index: 1; }
+.cert-tile--simplon .cert-tile-logos { position: relative; z-index: 1; }
+.cert-tile--simplon .cert-tile-title { font-size: 14px; font-weight: 800; color: #ce0033; font-family: "Poppins", sans-serif; position: relative; z-index: 1; }
+.cert-tile--simplon .cert-tile-footer { border-top-color: rgba(206,0,51,0.12); position: relative; z-index: 1; }
+.cert-tile--simplon .cert-tile-year { color: rgba(206,0,51,0.55); }
+.cert-tile--simplon .cert-physical { color: rgba(206,0,51,0.6); }
+.cert-tile--simplon .cert-logo-chip { box-shadow: none; border: 1px solid #f0c0ca; }
+
+/* ── 4. Orange front ── */
+.cert-tile--orange .cert-front {
+  background: #ffffff;
+  border: 1px solid #ffe0c8;
+  box-shadow: 0 2px 12px rgba(229,90,0,0.08);
+  padding-top: 20px;
+}
+.cert-tile--orange .cert-front::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 5px;
+  /* background: linear-gradient(90deg, #FF6600, #ff9d00); */
+  border-radius: 14px 14px 0 0;
+}
+.cert-tile--orange .cert-label { color: rgba(229,90,0,0.6); }
+.cert-tile--orange .cert-tile-title { font-size: 14px; font-weight: 700; color: #c45000; font-family: "Poppins", sans-serif; }
+.cert-tile--orange .cert-logo-chip { border: 1px solid #ffddc0; box-shadow: none; }
+.cert-tile--orange .cert-tile-year { color: rgba(229,90,0,0.55); }
+.cert-tile--orange .cert-physical { color: rgba(229,90,0,0.6); }
+.cert-tile--orange .cert-tile-footer { border-top-color: rgba(229,90,0,0.12); }
 
 /*--------------------------------------------------------------
 # Facts
@@ -1398,7 +1772,35 @@ section {
     rgba(4, 11, 20, 0.55) 65%,
     transparent 100%
   );
-  pointer-events: none;
+}
+.agro-header-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+.agro-partner-pills {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.agro-pill {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  padding: 3px 10px;
+  border-radius: 4px;
+  font-family: "Inter", sans-serif;
+}
+.agro-pill.pnud {
+  background: rgba(0, 120, 210, 0.35);
+  border: 1px solid rgba(0, 170, 255, 0.5);
+  color: #7dd3fc;
+}
+.agro-pill.tadamon {
+  background: rgba(234, 179, 8, 0.2);
+  border: 1px solid rgba(234, 179, 8, 0.4);
+  color: #fde68a;
 }
 
 .portfolio-badge {
@@ -1495,12 +1897,225 @@ section {
   color: #fff;
 }
 
+/* Featured slider — Swiper wrapper */
+.featured-slider {
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+}
+.featured-slider .swiper-slide {
+  height: auto;
+}
+
+/* Navigation arrows */
+.featured-prev,
+.featured-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 18px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+  backdrop-filter: blur(4px);
+}
+.featured-prev { left: 16px; }
+.featured-next { right: 16px; }
+.featured-prev:hover,
+.featured-next:hover {
+  background: rgba(20, 157, 221, 0.6);
+}
+
+/* Pagination dots */
+.featured-pagination {
+  position: absolute;
+  bottom: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  display: flex;
+  gap: 7px;
+}
+.featured-pagination .swiper-pagination-bullet {
+  width: 8px;
+  height: 8px;
+  background: rgba(255,255,255,0.4);
+  border-radius: 50%;
+  opacity: 1;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+.featured-pagination .swiper-pagination-bullet-active {
+  background: #fff;
+  transform: scale(1.3);
+}
+
+/* Smart Agro card */
+.portfolio-agro {
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+  min-height: 420px;
+  display: flex;
+  background: linear-gradient(140deg, #0b2e14 0%, #0f4c25 50%, #1a6b38 100%);
+}
+.agro-dot-pattern {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(255,255,255,0.045) 1px, transparent 1px);
+  background-size: 22px 22px;
+  pointer-events: none;
+}
+.agro-content {
+  flex: 1;
+  padding: 32px 36px;
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+}
+.agro-header-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  margin-bottom: 18px;
+}
+.agro-badge-xpro {
+  background: rgba(255,255,255,0.08) !important;
+  border-color: rgba(255,255,255,0.2) !important;
+  color: rgba(255,255,255,0.65) !important;
+}
+.agro-partner-pills {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.agro-pill {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  padding: 3px 10px;
+  border-radius: 4px;
+  font-family: "Inter", sans-serif;
+}
+.agro-pill.pnud {
+  background: rgba(0, 120, 210, 0.25);
+  border: 1px solid rgba(0, 170, 255, 0.45);
+  color: #7dd3fc;
+}
+.agro-pill.tadamon {
+  background: rgba(234, 179, 8, 0.15);
+  border: 1px solid rgba(234, 179, 8, 0.35);
+  color: #fde68a;
+}
+.agro-title {
+  font-size: 32px;
+  font-weight: 700;
+  color: #fff;
+  margin: 0 0 4px;
+  font-family: "Raleway", sans-serif;
+  line-height: 1.2;
+}
+.agro-subtitle {
+  font-size: 13px;
+  color: rgba(255,255,255,0.45);
+  font-family: "Inter", sans-serif;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 14px;
+}
+.agro-desc {
+  color: rgba(255,255,255,0.72);
+  font-size: 14px;
+  line-height: 1.65;
+  margin-bottom: 20px;
+  flex: 1;
+}
+.agro-partners-block {
+  margin-bottom: 20px;
+}
+.agro-partners-label {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: rgba(255,255,255,0.3);
+  font-family: "Inter", sans-serif;
+  font-weight: 700;
+  display: block;
+  margin-bottom: 10px;
+}
+.agro-partner-list {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+.agro-partner-item {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 13px;
+  color: rgba(255,255,255,0.72);
+  font-family: "Inter", sans-serif;
+  font-weight: 500;
+}
+.agro-partner-item i {
+  color: #4ade80;
+  font-size: 15px;
+  flex-shrink: 0;
+}
+.agro-tech-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.agro-tech-tags span {
+  font-size: 11px;
+  font-weight: 500;
+  padding: 3px 10px;
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.18);
+  border-radius: 3px;
+  color: rgba(255,255,255,0.8);
+  font-family: "Inter", sans-serif;
+}
+.agro-visual {
+  width: 160px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  position: relative;
+  z-index: 2;
+  background: rgba(0,0,0,0.12);
+}
+.agro-visual i {
+  font-size: 44px;
+  color: rgba(255,255,255,0.10);
+}
+@media (max-width: 768px) {
+  .agro-visual { display: none; }
+  .portfolio-agro { min-height: auto; }
+}
+
 /*--------------------------------------------------------------
 # About section improvements
 --------------------------------------------------------------*/
 .intro-section {
   background: #f7fafd;
-  border-left: 3px solid #149ddd;
+  /* border-left: 3px solid #149ddd; */
   border-radius: 0 8px 8px 0;
   padding: 20px 24px;
   margin-bottom: 20px;

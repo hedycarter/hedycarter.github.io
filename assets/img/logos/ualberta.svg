@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 148 32" height="32">
+  <!-- Shield mark -->
+  <path d="M13 3 L23 3 L23 18 Q18 26 13 28 Q8 26 3 18 L3 3 Z" fill="#007C41"/>
+  <path d="M8 8 L18 8 L18 17 Q13 23 8 24 Q8 23 8 17 Z" fill="#FECB00"/>
+  <text x="6" y="20" font-family="Georgia, serif" font-weight="700" font-size="10" fill="#007C41">U</text>
+  <!-- Wordmark -->
+  <text x="30" y="14" font-family="Georgia, serif" font-weight="700" font-size="11" fill="#007C41">University of</text>
+  <text x="30" y="27" font-family="Georgia, serif" font-weight="700" font-size="11" fill="#007C41">Alberta</text>
+</svg>

@@ -52,7 +52,43 @@
   <link href="assets/css/style.css" rel="stylesheet">
   <link href="assets/css/style2.css" rel="stylesheet">
 
-  
+  <!-- Schema.org JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Hady Fofana",
+    "jobTitle": "Responsable Développement",
+    "description": "Développeur Full Stack Java / Spring Boot / Angular. Responsable Développement chez Groupe Xpert Pro à Bamako, Mali.",
+    "email": "hadyfofana72@gmail.com",
+    "url": "https://hedycarter.github.io",
+    "image": "https://hedycarter.github.io/assets/img/fof1.png",
+    "worksFor": {
+      "@type": "Organization",
+      "name": "Groupe Xpert Pro",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Bamako",
+        "addressCountry": "ML"
+      }
+    },
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Bamako",
+      "addressCountry": "ML"
+    },
+    "sameAs": [
+      "https://github.com/XpertProDev",
+      "https://www.linkedin.com/in/hady-fofana-9983231a7",
+      "https://twitter.com/HadyFof"
+    ],
+    "knowsAbout": ["Java", "Spring Boot", "Angular", "Ionic", "Docker", "MySQL", "Redis", "GitLab CI", "Software Architecture"],
+    "alumniOf": [
+      { "@type": "EducationalOrganization", "name": "Institut Privé IP-SMART" },
+      { "@type": "EducationalOrganization", "name": "University of Alberta" }
+    ]
+  }
+  </script>
 
 </head>
 
@@ -68,9 +104,11 @@
       <div class="profile">
         <img src="assets/img/fof1.png" alt="" class="img-fluid rounded-circle">
         <h1 class="text-light"><a href="index.html">Hady Fofana</a></h1>
+        <div class="sidebar-status">
+          <span class="status-dot"></span>
+          En poste · Bamako, Mali
+        </div>
 
-         
-        
         <div class="social-links mt-3 text-center">
           <a href="https://twitter.com/HadyFof" target="_blank" class="twitter"><i class="bx bxl-twitter"></i></a>
           <a href="https://github.com/XpertProDev" target="_blank" class="github"><i class="bx bxl-github"></i></a>
@@ -98,10 +136,10 @@
     <div class="hero-container" data-aos="fade-in">
 
       <div class="hero-text">
-        <!-- <div class="hero-badge">
+        <div class="hero-badge">
           <span class="hero-badge-dot"></span>
           Responsable Développement · Groupe Xpert Pro
-        </div> -->
+        </div>
         <h1>Hady<br>Fofana</h1>
         <p class="hero-role">
           Développeur Full Stack<br>
@@ -154,6 +192,16 @@
           <p class="intro-text" style="margin-top: 12px;">
             Mon projet phare : <strong>Tchakeda</strong>, une plateforme SaaS multi-tenant de gestion d'entreprise déployée en production, avec <strong>183+ entreprises</strong> et <strong>330+ utilisateurs</strong> actifs. Avant cela, j'ai conçu une solution FinTech e-wallet connectée à Orange Money chez AfriCred — du backend Spring Boot à l'application mobile Ionic.
           </p>
+        </div>
+
+        <div class="github-stats-row" data-aos="fade-up">
+          <div class="github-chart-wrapper">
+            <div class="github-chart-label">
+              <i class="bx bxl-github"></i>
+              Contributions GitHub — <a href="https://github.com/XpertProDev" target="_blank">XpertProDev</a>
+            </div>
+            <img src="https://ghchart.rshah.org/149ddd/XpertProDev" alt="GitHub Contributions" loading="lazy" class="github-chart-img">
+          </div>
         </div>
 
         <div class="row">
@@ -255,7 +303,8 @@
                       <li>Conception de l'architecture applicative des solutions internes et clients.</li>
                       <li>Intégration Docker et GitLab CI dans les pipelines de développement et déploiement.</li>
                       <li>Accompagnement technique de l'équipe et rédaction de la documentation.</li>
-                      <li><strong>Projet clé :</strong> Tchakeda — plateforme SaaS multi-tenant (183+ entreprises, 330+ utilisateurs).</li>
+                      <li><strong>Tchakeda :</strong> plateforme SaaS multi-tenant (183+ entreprises, 330+ utilisateurs).</li>
+                      <li><strong>Smart Agro :</strong> plateforme numérique agricole (réseau social agri-coach) — en partenariat avec le PNUD et TADAMON ACCELERATOR.</li>
                   </ul>
               </div>
 
@@ -289,7 +338,143 @@
   </div>
 </section><!-- End Resume Section -->
 
-      
+    <!-- ======= Certifications Section ======= -->
+    <section id="certifications" class="certifications section-bg">
+      <div class="container">
+        <div class="section-title">
+          <h2>Certifications</h2>
+        </div>
+        <div class="cert-grid" data-aos="fade-up">
+
+           <!-- University of Alberta -->
+          <div class="cert-tile cert-tile--alberta">
+            <div class="cert-flip">
+              <!-- FRONT -->
+              <div class="cert-front">
+                <p class="cert-label">Certificate of Achievement</p>
+                <div class="cert-tile-logos">
+                  <span class="cert-logo-chip"><img src="assets/img/logos/ualberta.svg" alt="University of Alberta"></span>
+                  <span class="cert-logo-chip"><img src="assets/img/logos/coursera.svg" alt="Coursera"></span>
+                </div>
+                <p class="cert-recipient cert-recipient--alberta">HADY FOFANA</p>
+                <h4 class="cert-tile-title">Software Architecture</h4>
+                <p class="cert-distinction">with Distinction</p>
+                <div class="cert-tile-footer">
+                  <span class="cert-tile-year">2026</span>
+                </div>
+              </div>
+              <!-- BACK -->
+              <div class="cert-back cert-back--alberta">
+                <p class="cert-back-label">Certificate of Achievement</p>
+                <p class="cert-back-title">Software Architecture</p>
+                <p class="cert-back-sub">with Distinction<br>University of Alberta via Coursera<br>Online &amp; Continuing Education</p>
+                <div class="cert-back-footer">
+                  <span>2026</span>
+                  <a href="https://coursera.org/verify/EJ0SAE5K72LT" target="_blank" class="cert-back-link">Vérifier <i class="bi bi-arrow-up-right"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- LearnQuest · Coursera -->
+          <div class="cert-tile cert-tile--learnquest">
+            <div class="cert-flip">
+              <!-- FRONT -->
+              <div class="cert-front">
+                <div class="cert-body">
+                  <p class="cert-label">Course Certificate</p>
+                  <div class="cert-tile-logos">
+                    <span class="cert-logo-chip"><img src="assets/img/logos/learnquest.svg" alt="LearnQuest"></span>
+                  </div>
+                  <p class="cert-recipient cert-recipient--lq">Hady Fofana</p>
+                  <h4 class="cert-tile-title">Spring MVC</h4>
+                  <div class="cert-tile-footer">
+                    <span class="cert-tile-year">Déc 2022</span>
+                  </div>
+                </div>
+                <div class="cert-ribbon">
+                  <p class="cert-ribbon-title">COURSE<br>CERTIFICATE</p>
+                  <div class="cert-ribbon-seal">
+                    <img src="assets/img/logos/coursera.svg" alt="Coursera">
+                  </div>
+                </div>
+              </div>
+              <!-- BACK -->
+              <div class="cert-back cert-back--learnquest">
+                <p class="cert-back-label">Course Certificate</p>
+                <p class="cert-back-title">Spring MVC</p>
+                <p class="cert-back-sub">Spring Boot &amp; REST Controllers<br>Autorisé par LearnQuest via Coursera</p>
+                <div class="cert-back-footer">
+                  <span>Déc 2022</span>
+                  <a href="https://coursera.org/verify/8WXXTKM39LZW" target="_blank" class="cert-back-link">Vérifier <i class="bi bi-arrow-up-right"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Simplon.co -->
+          <div class="cert-tile cert-tile--simplon">
+            <div class="cert-flip">
+              <!-- FRONT -->
+              <div class="cert-front">
+                <p class="cert-label">Certificat de Compétences</p>
+                <div class="cert-tile-logos">
+                  <span class="cert-logo-chip"><img src="assets/img/logos/simplon.svg" alt="Simplon.co"></span>
+                </div>
+                <p class="cert-recipient cert-recipient--simplon">Hady Fofana</p>
+                <h4 class="cert-tile-title">Dév. Full Stack</h4>
+                <div class="cert-tile-footer">
+                  <span class="cert-tile-year">2021 – 2022</span>
+                  <span class="cert-physical"><i class="bi bi-patch-check-fill"></i> Physique</span>
+                </div>
+              </div>
+              <!-- BACK -->
+              <div class="cert-back cert-back--simplon">
+                <p class="cert-back-label">Certificat de Compétences</p>
+                <p class="cert-back-title">Développeur Full Stack</p>
+                <p class="cert-back-sub">Formation intensive à distance<br>Simplon.co — Parcours Complet<br>Durée de validité : Permanente</p>
+                <div class="cert-back-footer">
+                  <span>2021 – 2022</span>
+                  <span class="cert-back-badge"><i class="bi bi-patch-check-fill"></i> Physique</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Orange Digital Center -->
+          <div class="cert-tile cert-tile--orange">
+            <div class="cert-flip">
+              <!-- FRONT -->
+              <div class="cert-front">
+                <p class="cert-label">Digital Academy · Kalanso</p>
+                <div class="cert-tile-logos">
+                  <span class="cert-logo-chip"><img src="assets/img/logos/orange.svg" alt="Orange Digital Center"></span>
+                </div>
+                <p class="cert-recipient cert-recipient--orange">Hady Fofana</p>
+                <h4 class="cert-tile-title">Dév. Web &amp; Mobile</h4>
+                <div class="cert-tile-footer">
+                  <span class="cert-tile-year">2021 – 2022</span>
+                  <span class="cert-physical"><i class="bi bi-patch-check-fill"></i> Physique</span>
+                </div>
+              </div>
+              <!-- BACK -->
+              <div class="cert-back cert-back--orange">
+                <p class="cert-back-label">Digital Academy</p>
+                <p class="cert-back-title">Dév. Web &amp; Mobile</p>
+                <p class="cert-back-sub">Orange Digital Center<br>Kalanso — Bamako, Mali<br>Formation intensive</p>
+                <div class="cert-back-footer">
+                  <span>2021 – 2022</span>
+                  <span class="cert-back-badge"><i class="bi bi-patch-check-fill"></i> Physique</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section><!-- End Certifications Section -->
+
+
    
 
     <!-- ======= Skills Section ======= -->
@@ -334,6 +519,7 @@
               <span class="tech-tag tech-primary">Angular</span>
               <span class="tech-tag">TypeScript</span>
               <span class="tech-tag">Bootstrap</span>
+              <span class="tech-tag">Tailwind CSS</span>
               <span class="tech-tag tech-primary">Ionic</span>
               <span class="tech-tag">Flutter</span>
               <span class="tech-tag">WordPress</span>
@@ -393,25 +579,64 @@
           <p>Projets développés en production, du backend Java aux plateformes SaaS.</p>
         </div>
 
-        <!-- Tchakeda — showcase permanent, en dehors du grid Isotope -->
+        <!-- Projets phares Groupe Xpert Pro — slider -->
         <div class="portfolio-featured-wrapper" data-aos="fade-up">
-          <div class="portfolio-wrap portfolio-featured">
-            <img src="assets/img/portfolio/projetTchakeda.jpeg" class="img-fluid" alt="Tchakeda — Plateforme SaaS multi-tenant">
-            <div class="portfolio-featured-info">
-              <span class="portfolio-badge">Projet actuel · Groupe Xpert Pro</span>
-              <h3 class="portfolio-featured-title">Tchakeda</h3>
-              <p class="portfolio-featured-desc">Plateforme SaaS multi-tenant de gestion d'entreprise — conception, architecture et développement Full Stack</p>
-              <div class="portfolio-featured-stats">
-                <span><strong>183+</strong> entreprises inscrites</span>
-                <span><strong>330+</strong> utilisateurs actifs</span>
+          <div class="featured-slider swiper">
+            <div class="swiper-wrapper">
+
+              <!-- Slide 1 : Tchakeda -->
+              <div class="swiper-slide">
+                <div class="portfolio-wrap portfolio-featured">
+                  <img src="assets/img/portfolio/projetTchakeda.jpeg" class="img-fluid" alt="Tchakeda — Plateforme SaaS multi-tenant">
+                  <div class="portfolio-featured-info">
+                    <span class="portfolio-badge">Projet actuel · Groupe Xpert Pro</span>
+                    <h3 class="portfolio-featured-title">Tchakeda</h3>
+                    <p class="portfolio-featured-desc">Plateforme SaaS multi-tenant de gestion d'entreprise — conception, architecture et développement Full Stack</p>
+                    <div class="portfolio-featured-stats">
+                      <span><strong>183+</strong> entreprises inscrites</span>
+                      <span><strong>330+</strong> utilisateurs actifs</span>
+                    </div>
+                    <div class="portfolio-featured-tags">
+                      <span>Java</span><span>Spring Boot</span><span>Angular</span><span>MySQL</span><span>Redis</span><span>Docker</span><span>GitLab CI</span><span>Swagger</span>
+                    </div>
+                  </div>
+                  <div class="tchakeda-open-btn">
+                    <a href="assets/img/portfolio/projetTchakeda.jpeg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Tchakeda — Plateforme SaaS multi-tenant · 183+ entreprises · 330+ utilisateurs"><i class="bx bx-plus"></i></a>
+                  </div>
+                </div>
               </div>
-              <div class="portfolio-featured-tags">
-                <span>Java</span><span>Spring Boot</span><span>Angular</span><span>MySQL</span><span>Redis</span><span>Docker</span><span>GitLab CI</span><span>Swagger</span>
+
+              <!-- Slide 2 : Smart Agro -->
+              <div class="swiper-slide">
+                <div class="portfolio-wrap portfolio-featured">
+                  <img src="assets/img/portfolio/smart.jpeg" class="img-fluid" alt="Smart Agro Coach — Plateforme numérique agricole">
+                  <div class="portfolio-featured-info">
+                    <div class="agro-header-row" style="margin-bottom:10px;">
+                      <span class="portfolio-badge">Projet actuel · Groupe Xpert Pro</span>
+                      <!-- <div class="agro-partner-pills">
+                        <span class="agro-pill pnud"><i class="bi bi-globe2"></i> PNUD</span>
+                        <span class="agro-pill tadamon">TADAMON ACCELERATOR</span>
+                      </div> -->
+                    </div>
+                    <h3 class="portfolio-featured-title">Smart Agro</h3>
+                    <p class="portfolio-featured-desc">Plateforme numérique de conseil agricole — réseau social entre agriculteurs et coachs pour le partage d'informations, alertes climatiques et pratiques innovantes.</p>
+                    <div class="portfolio-featured-stats">
+                      <span><i class="bi bi-globe2" style="color:#7dd3fc;margin-right:5px;"></i><strong>PNUD</strong></span>
+                      <span><i class="bi bi-rocket-takeoff-fill" style="color:#fde68a;margin-right:5px;"></i><strong>TADAMON</strong> Food Security</span>
+                    </div>
+                    <div class="portfolio-featured-tags">
+                      <span>Java</span><span>Spring Boot</span><span>Angular</span><span>Ionic</span><span>MySQL</span><span>Redis</span><span>OpenWeatherMap</span><span>Docker</span>
+                    </div>
+                  </div>
+                </div>
               </div>
+
             </div>
-            <div class="tchakeda-open-btn">
-              <a href="assets/img/portfolio/projetTchakeda.jpeg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Tchakeda — Plateforme SaaS multi-tenant · +183 entreprises · +330 utilisateurs"><i class="bx bx-plus"></i></a>
-            </div>
+            <!-- Arrows -->
+            <div class="featured-prev"><i class="bi bi-chevron-left"></i></div>
+            <div class="featured-next"><i class="bi bi-chevron-right"></i></div>
+            <!-- Dots -->
+            <div class="featured-pagination"></div>
           </div>
         </div>
 
@@ -795,6 +1020,24 @@
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
+
+  <script>
+    window.addEventListener('load', function () {
+      new Swiper('.featured-slider', {
+        loop: false,
+        speed: 500,
+        slidesPerView: 1,
+        navigation: {
+          nextEl: '.featured-next',
+          prevEl: '.featured-prev',
+        },
+        pagination: {
+          el: '.featured-pagination',
+          clickable: true,
+        }
+      });
+    });
+  </script>
 
   </body>
 
