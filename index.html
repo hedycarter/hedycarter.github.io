@@ -15,13 +15,16 @@
 
   <!-- Open Graph / Social sharing -->
   <meta property="og:type" content="website">
+  <meta property="og:url" content="https://hedycarter.github.io">
   <meta property="og:title" content="Hady Fofana — Développeur Full Stack Java · Spring Boot · Angular">
   <meta property="og:description" content="Responsable Développement chez Groupe Xpert Pro. Concepteur de Tchakeda, plateforme SaaS multi-tenant (183+ entreprises). 4+ ans d'expérience full stack.">
-  <meta property="og:image" content="assets/img/fof1.png">
+  <meta property="og:image" content="https://hedycarter.github.io/assets/img/fof1.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Hady Fofana — Développeur Full Stack">
   <meta name="twitter:description" content="Java · Spring Boot · Angular · Responsable Développement @ Groupe Xpert Pro">
-  <meta name="twitter:image" content="assets/img/fof1.png">
+  <meta name="twitter:image" content="https://hedycarter.github.io/assets/img/fof1.png">
 
   <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-SJ9LFGJTX2"></script>
@@ -94,6 +97,9 @@
 
 <body>
 
+  <!-- Scroll progress bar -->
+  <div id="scroll-progress"></div>
+
   <!-- ======= Mobile nav toggle button ======= -->
   <i class="bi bi-list mobile-nav-toggle d-xl-none"></i>
 
@@ -125,6 +131,7 @@
           <li><a href="#portfolio" class="nav-link scrollto"><i class="bx bxs-shopping-bag-alt"></i> <span>Mes Projets</span></a></li>
           <li><a href="#services" class="nav-link scrollto"><i class="bx bx-server"></i> <span>Références</span></a></li>
           
+          <li><a href="#testimonials" class="nav-link scrollto"><i class="bx bx-chat"></i> <span>Témoignages</span></a></li>
           <li><a href="#contact" class="nav-link scrollto"><i class="bx bx-envelope"></i> <span>Contact</span></a></li>
         </ul>
       </nav><!-- .nav-menu -->
@@ -181,6 +188,33 @@
     <div class="row">
       <div class="col-lg-4" data-aos="fade-right">
         <img src="assets/img/fof1.png" class="img-fluid" alt="Hady Fofana" style="border-radius: 8px;">
+        <!-- Animated counters -->
+        <div class="about-counters" data-aos="fade-up">
+          <div class="about-counter-item">
+            <div class="counter-value">
+              <span class="purecounter" data-purecounter-start="0" data-purecounter-end="183" data-purecounter-duration="1">0</span><span class="counter-suffix">+</span>
+            </div>
+            <p>Entreprises clientes</p>
+          </div>
+          <div class="about-counter-item">
+            <div class="counter-value">
+              <span class="purecounter" data-purecounter-start="0" data-purecounter-end="330" data-purecounter-duration="1">0</span><span class="counter-suffix">+</span>
+            </div>
+            <p>Utilisateurs actifs</p>
+          </div>
+          <div class="about-counter-item">
+            <div class="counter-value">
+              <span class="purecounter" data-purecounter-start="0" data-purecounter-end="4" data-purecounter-duration="1">0</span><span class="counter-suffix">+</span>
+            </div>
+            <p>Ans d'expérience</p>
+          </div>
+          <div class="about-counter-item">
+            <div class="counter-value">
+              <span class="purecounter" data-purecounter-start="0" data-purecounter-end="10" data-purecounter-duration="1">0</span><span class="counter-suffix">+</span>
+            </div>
+            <p>Projets livrés</p>
+          </div>
+        </div>
       </div>
       <div class="col-lg-8 pt-4 pt-lg-0 content" data-aos="fade-left">
         <h3>Développeur Full Stack — Java · Spring Boot · Angular</h3>
@@ -967,20 +1001,27 @@
           </div>
 
           <div class="col-lg-7 mt-5 mt-lg-0 d-flex align-items-stretch">
-            <div class="contact-cta-box">
-              <p class="contact-cta-text">
-                Disponible pour des projets freelance, des collaborations techniques ou des opportunités full-time.
-                N'hésitez pas à me contacter directement — je réponds en général sous 24h.
-              </p>
-              <a href="mailto:hadyfofana72@gmail.com?subject=Contact depuis votre portfolio" class="contact-mailto-btn">
-                <i class="bi bi-envelope-fill"></i>
-                Envoyer un message
-              </a>
-              <a href="./cv/CV_Hady_Fofana_Developpeur_Logiciel_Full_Stack.pdf" class="contact-cv-btn" target="_blank">
-                <i class="bi bi-file-earmark-arrow-down"></i>
-                Télécharger le CV
-              </a>
-            </div>
+            <form id="contact-form" class="contact-form-box" novalidate>
+              <div class="cf-row">
+                <div class="cf-group">
+                  <input type="text" name="from_name" class="cf-input" placeholder="Votre nom" required>
+                </div>
+                <div class="cf-group">
+                  <input type="email" name="reply_to" class="cf-input" placeholder="Votre email" required>
+                </div>
+              </div>
+              <div class="cf-group">
+                <input type="text" name="subject" class="cf-input" placeholder="Sujet" required>
+              </div>
+              <div class="cf-group">
+                <textarea name="message" class="cf-input cf-textarea" rows="5" placeholder="Votre message..." required></textarea>
+              </div>
+              <button type="submit" class="cf-submit-btn" id="cf-submit-btn">
+                <i class="bi bi-send-fill"></i>
+                <span>Envoyer le message</span>
+              </button>
+              <div id="cf-feedback" class="cf-feedback"></div>
+            </form>
           </div>
 
         </div>
@@ -1036,6 +1077,58 @@
           clickable: true,
         }
       });
+    });
+  </script>
+
+  <!-- Scroll progress bar -->
+  <script>
+    window.addEventListener('scroll', function () {
+      var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+      var scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      var progress = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
+      document.getElementById('scroll-progress').style.width = progress + '%';
+    });
+  </script>
+
+  <!-- EmailJS SDK -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script>
+    // -------------------------------------------------------
+    // EmailJS — Configuration
+    // 1. Créez un compte gratuit sur https://www.emailjs.com
+    // 2. Ajoutez un service Gmail (Service ID → remplacez ci-dessous)
+    // 3. Créez un template avec les variables : from_name, reply_to, subject, message
+    // 4. Copiez votre Public Key depuis Account → API Keys
+    // -------------------------------------------------------
+    var EMAILJS_PUBLIC_KEY  = 'YOUR_PUBLIC_KEY';
+    var EMAILJS_SERVICE_ID  = 'YOUR_SERVICE_ID';
+    var EMAILJS_TEMPLATE_ID = 'YOUR_TEMPLATE_ID';
+
+    emailjs.init(EMAILJS_PUBLIC_KEY);
+
+    document.getElementById('contact-form').addEventListener('submit', function (e) {
+      e.preventDefault();
+      var btn      = document.getElementById('cf-submit-btn');
+      var feedback = document.getElementById('cf-feedback');
+
+      btn.disabled = true;
+      btn.innerHTML = '<i class="bi bi-hourglass-split"></i> <span>Envoi en cours…</span>';
+      feedback.className = 'cf-feedback';
+      feedback.textContent = '';
+
+      emailjs.sendForm(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, this)
+        .then(function () {
+          feedback.className = 'cf-feedback cf-success';
+          feedback.textContent = '✓ Message envoyé ! Je vous réponds sous 24h.';
+          document.getElementById('contact-form').reset();
+          btn.disabled = false;
+          btn.innerHTML = '<i class="bi bi-send-fill"></i> <span>Envoyer le message</span>';
+        }, function () {
+          feedback.className = 'cf-feedback cf-error';
+          feedback.innerHTML = '✗ Erreur d\'envoi. Écrivez-moi directement à <a href="mailto:hadyfofana72@gmail.com">hadyfofana72@gmail.com</a>';
+          btn.disabled = false;
+          btn.innerHTML = '<i class="bi bi-send-fill"></i> <span>Envoyer le message</span>';
+        });
     });
   </script>
 
