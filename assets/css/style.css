@@ -518,6 +518,19 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 18px;
   border-bottom: none;
   padding-bottom: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 1px;
+}
+.hero-typed-cursor {
+  color: #149ddd;
+  font-weight: 300;
+  animation: cursor-blink 0.9s step-end infinite;
+  margin-left: 1px;
+}
+@keyframes cursor-blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
 }
 
 /* Hero CTAs */

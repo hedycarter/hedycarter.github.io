@@ -150,7 +150,7 @@
         <h1>Hady<br>Fofana</h1>
         <p class="hero-role">
           Développeur Full Stack<br>
-          <span class="hero-stack">Java · Spring Boot · Angular</span>
+          <span class="hero-stack"><span id="hero-typed"></span><span class="hero-typed-cursor">|</span></span>
         </p>
         <div class="hero-ctas">
           <a href="#portfolio" class="hero-cta-primary scrollto">Voir mes projets</a>
@@ -1076,6 +1076,24 @@
   <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
   <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
   <script src="assets/vendor/typed.js/typed.min.js"></script>
+  <script>
+    new Typed('#hero-typed', {
+      strings: [
+        'Java · Spring Boot',
+        'Angular · Ionic',
+        'Docker · GitLab CI',
+        'Architecture SaaS',
+        'FinTech · E-wallet',
+        'Full Stack Backend'
+      ],
+      typeSpeed: 52,
+      backSpeed: 30,
+      backDelay: 1800,
+      startDelay: 400,
+      loop: true,
+      showCursor: false
+    });
+  </script>
   <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
   <script src="assets/vendor/php-email-form/validate.js"></script>
 
