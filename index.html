@@ -112,7 +112,17 @@
         <h1 class="text-light"><a href="index.html">Hady Fofana</a></h1>
         <div class="sidebar-status">
           <span class="status-dot"></span>
-          En poste · Bamako, Mali
+          <span data-i18n="status">En poste · Bamako, Mali</span>
+        </div>
+        <div class="sidebar-avail">
+          <span class="avail-dot"></span>
+          <span data-i18n="avail">Ouvert aux opportunités</span>
+        </div>
+
+        <div class="lang-toggle">
+          <button class="lang-btn lang-btn--active" data-lang="fr">FR</button>
+          <span class="lang-sep">·</span>
+          <button class="lang-btn" data-lang="en">EN</button>
         </div>
 
         <div class="social-links mt-3 text-center">
@@ -124,15 +134,14 @@
 
       <nav id="navbar" class="nav-menu navbar">
         <ul>
-          <li><a href="#hero" class="nav-link scrollto active"><i class="bx bx-home"></i> <span>Accueil</span></a></li>
-          <li><a href="#about" class="nav-link scrollto"><i class="bx bx-user"></i> <span>Profile</span></a></li>
-          <li><a href="#resume" class="nav-link scrollto"><i class="bx bxs-graduation"></i> <span>Formations</span></a></li>
-          <li><a href="#skills" class="nav-link scrollto"><i class="bx bx-code-alt"></i> <span>Compétences</span></a></li>
-          <li><a href="#portfolio" class="nav-link scrollto"><i class="bx bxs-shopping-bag-alt"></i> <span>Mes Projets</span></a></li>
-          <li><a href="#services" class="nav-link scrollto"><i class="bx bx-server"></i> <span>Références</span></a></li>
-          
-          <li><a href="#testimonials" class="nav-link scrollto"><i class="bx bx-chat"></i> <span>Témoignages</span></a></li>
-          <li><a href="#contact" class="nav-link scrollto"><i class="bx bx-envelope"></i> <span>Contact</span></a></li>
+          <li><a href="#hero" class="nav-link scrollto active"><i class="bx bx-home"></i> <span data-i18n="nav.home">Accueil</span></a></li>
+          <li><a href="#about" class="nav-link scrollto"><i class="bx bx-user"></i> <span data-i18n="nav.about">Profile</span></a></li>
+          <li><a href="#resume" class="nav-link scrollto"><i class="bx bxs-graduation"></i> <span data-i18n="nav.resume">Formations</span></a></li>
+          <li><a href="#skills" class="nav-link scrollto"><i class="bx bx-code-alt"></i> <span data-i18n="nav.skills">Compétences</span></a></li>
+          <li><a href="#portfolio" class="nav-link scrollto"><i class="bx bxs-shopping-bag-alt"></i> <span data-i18n="nav.portfolio">Mes Projets</span></a></li>
+          <li><a href="#services" class="nav-link scrollto"><i class="bx bx-server"></i> <span data-i18n="nav.refs">Références</span></a></li>
+          <li><a href="#testimonials" class="nav-link scrollto"><i class="bx bx-chat"></i> <span data-i18n="nav.testimonials">Témoignages</span></a></li>
+          <li><a href="#contact" class="nav-link scrollto"><i class="bx bx-envelope"></i> <span data-i18n="nav.contact">Contact</span></a></li>
         </ul>
       </nav><!-- .nav-menu -->
     </div>
@@ -149,12 +158,12 @@
         </div> -->
         <h1>Hady<br>Fofana</h1>
         <p class="hero-role">
-          Développeur Full Stack<br>
+          <span data-i18n="hero.role">Développeur Full Stack</span><br>
           <span class="hero-stack"><span id="hero-typed"></span><span class="hero-typed-cursor">|</span></span>
         </p>
         <div class="hero-ctas">
-          <a href="#portfolio" class="hero-cta-primary scrollto">Voir mes projets</a>
-          <a href="./cv/CV_Hady_Fofana_Developpeur_Logiciel_Full_Stack.pdf" class="hero-cta-secondary" target="_blank">Télécharger le CV</a>
+          <a href="#portfolio" class="hero-cta-primary scrollto" data-i18n="hero.cta1">Voir mes projets</a>
+          <a href="./cv/CV_Hady_Fofana_Developpeur_Logiciel_Full_Stack.pdf" class="hero-cta-secondary" target="_blank" data-i18n="hero.cta2">Télécharger le CV</a>
         </div>
       </div>
 
@@ -182,7 +191,7 @@
   <div class="container">
 
     <div class="section-title">
-      <h2>Profil</h2>
+      <h2 data-i18n="sec.about">Profil</h2>
     </div>
 
     <div class="row">
@@ -217,24 +226,29 @@
         </div>
       </div>
       <div class="col-lg-8 pt-4 pt-lg-0 content" data-aos="fade-left">
-        <h3>Développeur Full Stack — Java · Spring Boot · Angular</h3>
+        <h3 data-i18n="about.h3">Développeur Full Stack — Java · Spring Boot · Angular</h3>
 
         <div class="intro-section">
-          <p class="intro-text">
+          <p class="intro-text" data-i18n="about.p1">
             Développeur Full Stack avec 4+ ans d'expérience, spécialisé en Java&nbsp;/&nbsp;Spring Boot et Angular. Depuis février&nbsp;2025, je dirige le département développement au <strong>Groupe Xpert Pro</strong> — architecture applicative, choix technologiques, sécurité et accompagnement de l'équipe.
           </p>
-          <p class="intro-text" style="margin-top: 12px;">
+          <p class="intro-text" style="margin-top: 12px;" data-i18n="about.p2">
             Mon projet phare : <strong>Tchakeda</strong>, une plateforme SaaS multi-tenant de gestion d'entreprise déployée en production, avec <strong>183+ entreprises</strong> et <strong>330+ utilisateurs</strong> actifs. Avant cela, j'ai conçu une solution FinTech e-wallet connectée à Orange Money chez AfriCred — du backend Spring Boot à l'application mobile Ionic.
           </p>
         </div>
 
         <div class="github-stats-row" data-aos="fade-up">
           <div class="github-chart-wrapper">
-            <div class="github-chart-label">
-              <i class="bx bxl-github"></i>
-              Contributions GitHub — <a href="https://github.com/XpertProDev" target="_blank">XpertProDev</a>
+            <div class="github-chart-header">
+              <span class="github-chart-label">
+                <i class="bx bxl-github"></i>
+                Contributions — <a href="https://github.com/XpertProDev" target="_blank">XpertProDev</a>
+              </span>
             </div>
             <img src="https://ghchart.rshah.org/149ddd/XpertProDev" alt="GitHub Contributions" loading="lazy" class="github-chart-img">
+            <div class="github-streak-row">
+              <img src="https://streak-stats.demolab.com?user=XpertProDev&hide_border=true&background=FFFFFF00&stroke=e2e8f0&ring=149ddd&fire=149ddd&currStreakLabel=149ddd&sideLabels=64748b&dates=94a3b8&sideNums=0f172a&currStreakNum=0f172a" alt="GitHub Streak" loading="lazy" class="github-streak-inline">
+            </div>
           </div>
         </div>
 
@@ -264,7 +278,7 @@
   <div class="container">
 
       <div class="section-title">
-          <h2>Formations</h2>
+          <h2 data-i18n="sec.resume">Formations</h2>
           <p>Parcours académique, certifications et expériences professionnelles.</p>
       </div>
 
@@ -376,7 +390,7 @@
     <section id="certifications" class="certifications section-bg">
       <div class="container">
         <div class="section-title">
-          <h2>Certifications</h2>
+          <h2 data-i18n="sec.cert">Certifications</h2>
         </div>
         <div class="cert-grid" data-aos="fade-up">
 
@@ -516,7 +530,7 @@
       <div class="container">
 
         <div class="section-title">
-          <h2>Stack Technique</h2>
+          <h2 data-i18n="sec.skills">Stack Technique</h2>
           <p>Technologies maîtrisées et utilisées en production.</p>
         </div>
 
@@ -648,7 +662,7 @@
       <div class="container">
 
         <div class="section-title">
-          <h2>Mes Projets</h2>
+          <h2 data-i18n="sec.portfolio">Mes Projets</h2>
           <p>Projets développés en production, du backend Java aux plateformes SaaS.</p>
         </div>
 
@@ -662,7 +676,7 @@
                 <div class="portfolio-wrap portfolio-featured">
                   <img src="assets/img/portfolio/projetTchakeda.jpeg" class="img-fluid" alt="Tchakeda — Plateforme SaaS multi-tenant">
                   <div class="portfolio-featured-info">
-                    <span class="portfolio-badge">Projet actuel · Groupe Xpert Pro</span>
+                    <span class="portfolio-badge"><span data-i18n="portfolio.badge">Projet actuel · Groupe Xpert Pro</span></span>
                     <h3 class="portfolio-featured-title">Tchakeda</h3>
                     <p class="portfolio-featured-desc">Plateforme SaaS multi-tenant de gestion d'entreprise — conception, architecture et développement Full Stack</p>
                     <div class="portfolio-featured-stats">
@@ -673,7 +687,7 @@
                       <span>Java</span><span>Spring Boot</span><span>Angular</span><span>MySQL</span><span>Redis</span><span>Docker</span><span>GitLab CI</span><span>Swagger</span>
                     </div>
                     <button class="cs-open-btn" id="open-cs-tchakeda">
-                      Lire le case study <i class="bi bi-arrow-right"></i>
+                      <span data-i18n="portfolio.cs">Lire le case study</span> <i class="bi bi-arrow-right"></i>
                     </button>
                   </div>
                   <div class="tchakeda-open-btn">
@@ -688,7 +702,7 @@
                   <img src="assets/img/portfolio/smart.jpeg" class="img-fluid" alt="Smart Agro Coach — Plateforme numérique agricole">
                   <div class="portfolio-featured-info">
                     <div class="agro-header-row" style="margin-bottom:10px;">
-                      <span class="portfolio-badge">Projet actuel · Groupe Xpert Pro</span>
+                      <span class="portfolio-badge"><span data-i18n="portfolio.badge">Projet actuel · Groupe Xpert Pro</span></span>
                       <!-- <div class="agro-partner-pills">
                         <span class="agro-pill pnud"><i class="bi bi-globe2"></i> PNUD</span>
                         <span class="agro-pill tadamon">TADAMON ACCELERATOR</span>
@@ -704,7 +718,7 @@
                       <span>Java</span><span>Spring Boot</span><span>Angular</span><span>Ionic</span><span>MySQL</span><span>Redis</span><span>OpenWeatherMap</span><span>Docker</span>
                     </div>
                     <button class="cs-open-btn" id="open-cs-agro">
-                      Lire le case study <i class="bi bi-arrow-right"></i>
+                      <span data-i18n="portfolio.cs">Lire le case study</span> <i class="bi bi-arrow-right"></i>
                     </button>
                   </div>
                   <div class="tchakeda-open-btn">
@@ -867,7 +881,7 @@
     <div class="container">
 
       <div class="section-title">
-        <h2>Références</h2>
+        <h2 data-i18n="sec.refs">Références</h2>
         <p>les personnes à contacter :</p>
       </div>
 
@@ -901,6 +915,66 @@
     
   </section><!-- End Portfolio Section -->
 
+  <!-- ======= Ce que je ne fais pas ======= -->
+  <section class="nope-section">
+    <div class="container">
+      <div class="nope-inner" data-aos="fade-up">
+        <p class="nope-label"><span data-i18n="nope.label">Standards · Ce que je refuse de faire</span></p>
+        <div class="nope-grid">
+
+          <div class="nope-item">
+            <span class="nope-x">✕</span>
+            <div>
+              <p class="nope-title">Logique métier dans les controllers</p>
+              <p class="nope-desc">Les controllers reçoivent et délèguent — la logique appartient aux services. Un controller gonflé est le premier signe d'une architecture non maintenable.</p>
+            </div>
+          </div>
+
+          <div class="nope-item">
+            <span class="nope-x">✕</span>
+            <div>
+              <p class="nope-title">Déploiement sans pipeline CI/CD</p>
+              <p class="nope-desc">Zéro déploiement manuel en production. Chaque release passe par GitLab CI — build, tests, Docker — pour être reproductible et traçable.</p>
+            </div>
+          </div>
+
+          <div class="nope-item">
+            <span class="nope-x">✕</span>
+            <div>
+              <p class="nope-title">Credentials en dur dans le code</p>
+              <p class="nope-desc">Mots de passe, clés API, secrets — ils vivent dans les variables d'environnement ou un vault, jamais dans le dépôt Git.</p>
+            </div>
+          </div>
+
+          <div class="nope-item">
+            <span class="nope-x">✕</span>
+            <div>
+              <p class="nope-title">Multi-tenant sans isolation stricte</p>
+              <p class="nope-desc">Chaque requête filtrée par <code>tenant_id</code> au niveau Spring Security — pas de confiance côté client, pas de fuite cross-tenant possible.</p>
+            </div>
+          </div>
+
+          <div class="nope-item">
+            <span class="nope-x">✕</span>
+            <div>
+              <p class="nope-title">Livrer sans avoir testé le cas nominal</p>
+              <p class="nope-desc">Avant toute mise en production, le golden path est couvert — que ce soit par tests unitaires, tests d'intégration ou validation manuelle documentée.</p>
+            </div>
+          </div>
+
+          <div class="nope-item">
+            <span class="nope-x">✕</span>
+            <div>
+              <p class="nope-title">Session serveur pour une API REST</p>
+              <p class="nope-desc">Une API REST est stateless par définition. JWT embarquant les claims nécessaires — aucun état serveur, scalabilité horizontale préservée.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
     <section class="resume">
       <div class="container">
         <div class="row">
@@ -932,7 +1006,7 @@
       <div class="container">
 
         <div class="section-title">
-          <h2>Témoignages</h2>
+          <h2 data-i18n="sec.testimonials">Témoignages</h2>
           <p>Ce que mes collaborateurs disent de mon travail.</p>
         </div>
 
@@ -992,7 +1066,7 @@
       <div class="container">
 
         <div class="section-title">
-          <h2>Contact</h2>
+          <h2 data-i18n="sec.contact">Contact</h2>
           <p>N'hésitez pas à me contacter, je vous répondrai dans les plus brefs délais.</p>
         </div>
 
@@ -1003,7 +1077,12 @@
               <div class="email">
                 <i class="bi bi-envelope"></i>
                 <h4>Email:</h4>
-                <p><a href="mailto:hadyfofana72@gmail.com">hadyfofana72@gmail.com</a></p>
+                <p>
+                  <a href="mailto:hadyfofana72@gmail.com">hadyfofana72@gmail.com</a>
+                  <button class="copy-email-btn" id="copy-email-btn" title="Copier l'adresse" aria-label="Copier l'email">
+                    <i class="bi bi-clipboard" id="copy-email-icon"></i>
+                  </button>
+                </p>
               </div>
 
               <div class="phone">
@@ -1024,21 +1103,21 @@
             <form id="contact-form" class="contact-form-box" novalidate>
               <div class="cf-row">
                 <div class="cf-group">
-                  <input type="text" name="from_name" class="cf-input" placeholder="Votre nom" required>
+                  <input type="text" name="from_name" class="cf-input" placeholder="Votre nom" data-i18n-ph="form.name" required>
                 </div>
                 <div class="cf-group">
-                  <input type="email" name="reply_to" class="cf-input" placeholder="Votre email" required>
+                  <input type="email" name="reply_to" class="cf-input" placeholder="Votre email" data-i18n-ph="form.email" required>
                 </div>
               </div>
               <div class="cf-group">
-                <input type="text" name="subject" class="cf-input" placeholder="Sujet" required>
+                <input type="text" name="subject" class="cf-input" placeholder="Sujet" data-i18n-ph="form.subject" required>
               </div>
               <div class="cf-group">
-                <textarea name="message" class="cf-input cf-textarea" rows="5" placeholder="Votre message..." required></textarea>
+                <textarea name="message" class="cf-input cf-textarea" rows="5" placeholder="Votre message..." data-i18n-ph="form.message" required></textarea>
               </div>
               <button type="submit" class="cf-submit-btn" id="cf-submit-btn">
                 <i class="bi bi-send-fill"></i>
-                <span>Envoyer le message</span>
+                <span data-i18n="form.send">Envoyer le message</span>
               </button>
               <div id="cf-feedback" class="cf-feedback"></div>
             </form>
@@ -1424,6 +1503,112 @@
       if (backdrop) backdrop.addEventListener('click', closeModal);
       document.addEventListener('keydown', function (e) {
         if (e.key === 'Escape' && modal.classList.contains('cs-modal--open')) closeModal();
+      });
+    })();
+  </script>
+
+  <!-- Language switcher -->
+  <script>
+  (function () {
+    var T = {
+      fr: {
+        'status': 'En poste · Bamako, Mali',
+        'avail': 'Ouvert aux opportunités',
+        'nav.home': 'Accueil', 'nav.about': 'Profile', 'nav.resume': 'Formations',
+        'nav.skills': 'Compétences', 'nav.portfolio': 'Mes Projets', 'nav.refs': 'Références',
+        'nav.testimonials': 'Témoignages', 'nav.contact': 'Contact',
+        'hero.role': 'Développeur Full Stack',
+        'hero.cta1': 'Voir mes projets', 'hero.cta2': 'Télécharger le CV',
+        'about.h3': 'Développeur Full Stack — Java · Spring Boot · Angular',
+        'about.p1': 'Développeur Full Stack avec 4+ ans d\'expérience, spécialisé en Java&nbsp;/&nbsp;Spring Boot et Angular. Depuis février&nbsp;2025, je dirige le département développement au <strong>Groupe Xpert Pro</strong> — architecture applicative, choix technologiques, sécurité et accompagnement de l\'équipe.',
+        'about.p2': 'Mon projet phare : <strong>Tchakeda</strong>, une plateforme SaaS multi-tenant de gestion d\'entreprise déployée en production, avec <strong>183+ entreprises</strong> et <strong>330+ utilisateurs</strong> actifs. Avant cela, j\'ai conçu une solution FinTech e-wallet connectée à Orange Money chez AfriCred — du backend Spring Boot à l\'application mobile Ionic.',
+        'sec.about': 'Profil', 'sec.resume': 'Formations', 'sec.cert': 'Certifications',
+        'sec.skills': 'Stack Technique', 'sec.portfolio': 'Mes Projets', 'sec.refs': 'Références',
+        'sec.testimonials': 'Témoignages', 'sec.contact': 'Contact',
+        'portfolio.badge': 'Projet actuel · Groupe Xpert Pro', 'portfolio.cs': 'Lire le case study',
+        'nope.label': 'Standards · Ce que je refuse de faire',
+        'form.name': 'Votre nom', 'form.email': 'Votre email', 'form.subject': 'Sujet',
+        'form.message': 'Votre message...', 'form.send': 'Envoyer le message',
+        'typed': ['Java · Spring Boot','Angular · Ionic','Docker · GitLab CI','Architecture SaaS','FinTech · E-wallet','Full Stack Backend']
+      },
+      en: {
+        'status': 'Employed · Bamako, Mali',
+        'avail': 'Open to opportunities',
+        'nav.home': 'Home', 'nav.about': 'About', 'nav.resume': 'Education',
+        'nav.skills': 'Skills', 'nav.portfolio': 'Projects', 'nav.refs': 'References',
+        'nav.testimonials': 'Testimonials', 'nav.contact': 'Contact',
+        'hero.role': 'Full Stack Developer',
+        'hero.cta1': 'See my projects', 'hero.cta2': 'Download CV',
+        'about.h3': 'Full Stack Developer — Java · Spring Boot · Angular',
+        'about.p1': 'Full Stack Developer with 4+ years of experience, specializing in Java&nbsp;/&nbsp;Spring Boot and Angular. Since February&nbsp;2025, I lead the development department at <strong>Groupe Xpert Pro</strong> — application architecture, technology decisions, security, and team mentoring.',
+        'about.p2': 'Flagship project: <strong>Tchakeda</strong>, a multi-tenant SaaS enterprise management platform in production with <strong>183+ client companies</strong> and <strong>330+ active users</strong>. Before that, I built a FinTech e-wallet solution integrated with Orange Money at AfriCred — from the Spring Boot backend to the Ionic mobile app.',
+        'sec.about': 'About', 'sec.resume': 'Education', 'sec.cert': 'Certifications',
+        'sec.skills': 'Tech Stack', 'sec.portfolio': 'Projects', 'sec.refs': 'References',
+        'sec.testimonials': 'Testimonials', 'sec.contact': 'Contact',
+        'portfolio.badge': 'Current project · Groupe Xpert Pro', 'portfolio.cs': 'Read the case study',
+        'nope.label': 'Standards · What I refuse to do',
+        'form.name': 'Your name', 'form.email': 'Your email', 'form.subject': 'Subject',
+        'form.message': 'Your message...', 'form.send': 'Send message',
+        'typed': ['Java · Spring Boot','Angular · Ionic','Docker · GitLab CI','SaaS Architecture','FinTech · E-wallet','Full Stack Backend']
+      }
+    };
+
+    var currentLang = localStorage.getItem('lang') || 'fr';
+    var typedInstance = null;
+
+    function applyLang(lang) {
+      var d = T[lang];
+      document.documentElement.lang = lang;
+      // text nodes
+      document.querySelectorAll('[data-i18n]').forEach(function (el) {
+        var key = el.getAttribute('data-i18n');
+        if (d[key] !== undefined) el.innerHTML = d[key];
+      });
+      // placeholders
+      document.querySelectorAll('[data-i18n-ph]').forEach(function (el) {
+        var key = el.getAttribute('data-i18n-ph');
+        if (d[key] !== undefined) el.placeholder = d[key];
+      });
+      // toggle buttons active state
+      document.querySelectorAll('.lang-btn').forEach(function (btn) {
+        btn.classList.toggle('lang-btn--active', btn.getAttribute('data-lang') === lang);
+      });
+      // restart typed.js
+      if (window.Typed && document.getElementById('hero-typed')) {
+        if (typedInstance) typedInstance.destroy();
+        typedInstance = new Typed('#hero-typed', {
+          strings: d['typed'],
+          typeSpeed: 52, backSpeed: 30, backDelay: 1800, startDelay: 100, loop: true, showCursor: false
+        });
+      }
+      localStorage.setItem('lang', lang);
+      currentLang = lang;
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+      applyLang(currentLang);
+      document.querySelectorAll('.lang-btn').forEach(function (btn) {
+        btn.addEventListener('click', function () { applyLang(btn.getAttribute('data-lang')); });
+      });
+    });
+  })();
+  </script>
+
+  <!-- Copy email -->
+  <script>
+    (function () {
+      var btn  = document.getElementById('copy-email-btn');
+      var icon = document.getElementById('copy-email-icon');
+      if (!btn) return;
+      btn.addEventListener('click', function () {
+        navigator.clipboard.writeText('hadyfofana72@gmail.com').then(function () {
+          icon.className = 'bi bi-clipboard-check';
+          btn.classList.add('copy-email-btn--done');
+          setTimeout(function () {
+            icon.className = 'bi bi-clipboard';
+            btn.classList.remove('copy-email-btn--done');
+          }, 2000);
+        });
       });
     })();
   </script>
