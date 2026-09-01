@@ -1670,10 +1670,43 @@ section {
   border-radius: 10px;
   padding: 20px 22px;
   transition: box-shadow 0.25s ease;
+  display: flex;
+  flex-direction: column;
 }
 
 .tech-category:hover {
   box-shadow: 0 4px 20px rgba(20, 157, 221, 0.08);
+}
+
+.tc-logos {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-top: auto;
+  padding-top: 14px;
+  border-top: 1px solid #edf1f7;
+}
+.tc-logos img {
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
+  opacity: 0.75;
+  transition: opacity 0.18s ease, transform 0.18s ease;
+}
+.tc-logos img:hover {
+  opacity: 1;
+  transform: scale(1.2);
+}
+.tc-icon {
+  font-size: 18px;
+  color: #149ddd;
+  opacity: 0.7;
+  transition: opacity 0.18s ease, transform 0.18s ease;
+}
+.tc-icon:hover {
+  opacity: 1;
+  transform: scale(1.2);
 }
 
 .category-label {
@@ -2276,4 +2309,277 @@ section {
 @media (max-width: 576px) {
   .cf-row { flex-direction: column; }
   .contact-form-box { padding: 24px 20px; }
+}
+
+/*--------------------------------------------------------------
+# Case Study — Open Button (on Tchakeda card)
+--------------------------------------------------------------*/
+.cs-open-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 14px;
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.28);
+  color: #fff;
+  font-family: "Poppins", sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.15s ease;
+}
+.cs-open-btn:hover { background: rgba(255,255,255,0.22); }
+.cs-open-btn:active { transform: scale(0.97); }
+.cs-open-btn i { font-size: 12px; transition: transform 0.2s ease; }
+.cs-open-btn:hover i { transform: translateX(3px); }
+
+/*--------------------------------------------------------------
+# Architecture Decisions Section
+--------------------------------------------------------------*/
+
+/*--------------------------------------------------------------
+# Case Study Modal
+--------------------------------------------------------------*/
+.cs-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 99998;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  pointer-events: none;
+}
+.cs-modal--open { pointer-events: all; }
+
+.cs-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(4, 11, 20, 0.55);
+  opacity: 0;
+  backdrop-filter: blur(4px);
+  transition: opacity 0.2s ease;
+}
+.cs-modal--open .cs-backdrop { opacity: 1; }
+
+.cs-panel {
+  position: relative;
+  background: #fff;
+  border-radius: 16px;
+  width: min(540px, 100%);
+  max-height: 85vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.18), 0 0 0 1px rgba(0,0,0,0.05);
+  opacity: 0;
+  transform: scale(0.96) translateY(8px);
+  transition: opacity 0.22s cubic-bezier(0.23,1,0.32,1),
+              transform 0.22s cubic-bezier(0.23,1,0.32,1);
+}
+.cs-modal--open .cs-panel { opacity: 1; transform: scale(1) translateY(0); }
+
+.cs-top-bar {
+  height: 3px;
+  /* background: linear-gradient(90deg, #149ddd, #38bdf8); */
+  border-radius: 16px 16px 0 0;
+  flex-shrink: 0;
+}
+
+.cs-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 28px;
+  height: 28px;
+  border: none;
+  background: #f1f5f9;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 11px;
+  color: #64748b;
+  z-index: 2;
+  transition: background 0.15s, transform 0.12s;
+}
+.cs-close:hover { background: #e2e8f0; }
+.cs-close:active { transform: scale(0.9); }
+
+.cs-inner {
+  padding: 24px 28px 28px;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.cs-eyebrow {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #149ddd;
+  font-family: "Poppins", sans-serif;
+  margin: 0 0 6px;
+}
+.cs-title {
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: #0f172a;
+  font-family: "Poppins", sans-serif;
+  line-height: 1.2;
+  margin: 0 0 6px;
+}
+.cs-lead {
+  font-size: 13px;
+  color: #64748b;
+  line-height: 1.6;
+  margin: 0 0 20px;
+}
+
+.cs-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+.cs-stat {
+  padding: 12px 8px;
+  text-align: center;
+  border-right: 1px solid #e2e8f0;
+}
+.cs-stat:last-child { border-right: none; }
+.cs-stat-n {
+  display: block;
+  font-family: "Poppins", sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: #0f172a;
+  line-height: 1;
+}
+.cs-stat-plus { font-size: 11px; color: #149ddd; }
+.cs-stat-l {
+  display: block;
+  font-size: 8.5px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #94a3b8;
+  margin-top: 4px;
+  line-height: 1.3;
+}
+
+.cs-divider { border: none; border-top: 1px solid #f1f5f9; margin: 0 0 18px; }
+
+.cs-section { margin-bottom: 18px; }
+.cs-section-label {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #94a3b8;
+  font-family: "Poppins", sans-serif;
+  margin: 0 0 7px;
+}
+.cs-text {
+  font-size: 13px;
+  color: #475569;
+  line-height: 1.7;
+  margin: 0;
+}
+.cs-text code {
+  font-size: 11.5px;
+  background: #f1f5f9;
+  color: #0d6ea3;
+  padding: 1px 5px;
+  border-radius: 3px;
+}
+
+.cs-stack-flow {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 10px;
+  padding: 10px 12px;
+  background: #f8fafc;
+  border-radius: 8px;
+  font-size: 11.5px;
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  color: #334155;
+}
+.cs-stack-flow em { font-style: normal; color: #94a3b8; font-size: 10.5px; }
+.cs-stack-flow .bi-arrow-right { color: #cbd5e1; font-size: 12px; }
+.cs-plus { color: #cbd5e1 !important; font-size: 10px !important; }
+
+.cs-dec { padding: 12px 0; border-bottom: 1px solid #f1f5f9; }
+.cs-dec--last { border-bottom: none; padding-bottom: 0; }
+.cs-dec-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: #0f172a;
+  font-family: "Poppins", sans-serif;
+  margin: 0 0 5px;
+}
+.cs-dec .cs-text { font-size: 12.5px; color: #64748b; }
+
+.cs-screenshots {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin: 0 0 20px;
+}
+.cs-screenshots--single {
+  grid-template-columns: 1fr;
+}
+.cs-screenshots--single img {
+  height: 160px;
+}
+.cs-screenshots img {
+  width: 100%;
+  height: 130px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+  display: block;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: zoom-in;
+}
+.cs-screenshots img:hover {
+  transform: scale(1.02);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+}
+@media (max-width: 480px) {
+  .cs-screenshots { grid-template-columns: 1fr; }
+  .cs-screenshots img { height: 160px; }
+}
+
+.cs-logo-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-top: 16px;
+  border-top: 1px solid #f1f5f9;
+  flex-wrap: wrap;
+}
+.cs-logo-row img {
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
+  opacity: 0.65;
+  transition: opacity 0.15s, transform 0.15s;
+}
+.cs-logo-row img:hover { opacity: 1; transform: scale(1.18); }
+
+@media (max-width: 480px) {
+  .cs-inner { padding: 18px 18px 22px; }
+  .cs-stats { grid-template-columns: repeat(2, 1fr); }
+  .cs-stat:nth-child(2) { border-right: none; }
+  .cs-stat:nth-child(3), .cs-stat:nth-child(4) { border-top: 1px solid #e2e8f0; }
 }
