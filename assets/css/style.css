@@ -251,6 +251,9 @@ button { font: inherit; color: inherit; }
   border-radius: var(--r-sm);
 }
 .lang-btn {
+  /* Liens vers la page de l'autre langue (une URL par langue, pour Google) */
+  display: inline-flex; align-items: center; justify-content: center;
+  color: inherit; text-decoration: none;
   min-width: 36px;
   height: 28px;
   border: 0;

@@ -15,42 +15,10 @@
   /* ---------------------------------------------------------------
      Langue
      --------------------------------------------------------------- */
-  function applyLang(next) {
-    var dict = I18N[next];
-    if (!dict) return;
-    lang = next;
-    root.lang = next;
-    $$('[data-i18n]').forEach(function (el) {
-      var v = dict[el.getAttribute('data-i18n')];
-      if (v !== undefined) el.innerHTML = v;
-    });
-    $$('[data-i18n-ph]').forEach(function (el) {
-      var v = dict[el.getAttribute('data-i18n-ph')];
-      if (v !== undefined) el.placeholder = v;
-    });
-    $$('[data-wa]').forEach(function (el) {
-      var msg = dict['contact.wa.text'];
-      if (msg) el.href = 'https://wa.me/22372303157?text=' + encodeURIComponent(msg);
-    });
-    $$('[data-i18n-aria]').forEach(function (el) {
-      var v = dict[el.getAttribute('data-i18n-aria')];
-      if (v !== undefined) el.setAttribute('aria-label', v);
-    });
-    $$('.lang-btn').forEach(function (btn) {
-      var on = btn.getAttribute('data-lang') === next;
-      btn.classList.toggle('lang-btn--active', on);
-      btn.setAttribute('aria-pressed', on ? 'true' : 'false');
-    });
-    try { localStorage.setItem('lang', next); } catch (e) {}
-    doc.dispatchEvent(new CustomEvent('langchange'));
-  }
-
-  var saved = null;
-  try { saved = localStorage.getItem('lang'); } catch (e) {}
-  if (saved && saved !== 'fr') applyLang(saved);
-  $$('.lang-btn').forEach(function (btn) {
-    btn.addEventListener('click', function () { applyLang(btn.getAttribute('data-lang')); });
-  });
+  // Une page par langue, chacune indexable par Google : index.html (français) et en.html (anglais,
+  // générée par tools/build-en.py). Les textes sont déjà écrits dans la page ; la langue vient de
+  // <html lang> et t() ne sert qu'aux textes produits par le JavaScript (démo, scènes, ticket, e-mail).
+  lang = root.lang === 'en' ? 'en' : 'fr';
 
   /* ---------------------------------------------------------------
      Header : fond plein une fois le hero dépassé
