@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <title>Hady Fofana — Le logiciel de l'économie réelle en Afrique de l'Ouest</title>
-  <meta name="description" content="Hady Fofana, développeur Full Stack Java / Spring Boot / Angular à Bamako. Je construis le logiciel de l'économie réelle en Afrique de l'Ouest : PME (Tchakeda), microfinance (AfriCred), agriculture (Smart Agro), industrie minière (Groupe ATC).">
+  <meta name="description" content="Hady Fofana, Responsable Développement (Java / Spring Boot / Angular) à Bamako. Je construis le logiciel de l'économie réelle en Afrique de l'Ouest : PME (Tchakeda), agriculture (Smart Agro), industrie minière (Groupe ATC), microfinance (AfriCred), commerce (ProcheMarket).">
   <meta name="theme-color" content="#0b0f17">
 
   <link href="assets/img/favicon.JPEG" rel="icon">
@@ -16,14 +16,14 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://hedycarter.github.io">
   <meta property="og:title" content="Hady Fofana — Le logiciel de l'économie réelle en Afrique de l'Ouest">
-  <meta property="og:description" content="Développeur Full Stack à Bamako. PME, microfinance, agriculture, industrie minière : des produits en production, du backend Java à l'interface.">
+  <meta property="og:description" content="Responsable Développement à Bamako. PME, agriculture, industrie minière, microfinance, commerce : des produits en production, du backend Java à l'interface.">
   <meta property="og:image" content="https://hedycarter.github.io/assets/img/og-hady.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="Hady Fofana — Le logiciel de l'économie réelle en Afrique de l'Ouest : PME, microfinance, agriculture, industrie">
+  <meta property="og:image:alt" content="Hady Fofana — Le logiciel de l'économie réelle en Afrique de l'Ouest : PME, agriculture, industrie, microfinance, commerce. 1 entreprise sur 300.">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Hady Fofana — Le logiciel de l'économie réelle en Afrique de l'Ouest">
-  <meta name="twitter:description" content="PME · Microfinance · Agriculture · Industrie — Développeur Full Stack à Bamako.">
+  <meta name="twitter:description" content="PME · Agriculture · Industrie · Microfinance · Commerce — Responsable Développement à Bamako.">
   <meta name="twitter:image" content="https://hedycarter.github.io/assets/img/og-hady.jpg">
 
   <!-- Google tag (gtag.js) -->
@@ -36,12 +36,27 @@
   </script>
 
   <!-- JS présent : active les états initiaux des animations (sans JS, tout reste visible) -->
-  <script>document.documentElement.classList.add('js');</script>
+  <script>
+    (function () {
+      var r = document.documentElement;
+      r.classList.add('js');
+      // Pré-masque du hero uniquement si le mouvement est permis ; sécurité si GSAP ne démarre pas.
+      if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        r.classList.add('motion-ok');
+        setTimeout(function () { if (!window.__motion) r.classList.toggle('motion-ok', false); }, 3000);
+      }
+    })();
+  </script>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <!-- Polices et icônes chargées sans bloquer le premier affichage (le texte s'affiche d'abord en police système) -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  </noscript>
   <link href="assets/css/style.css" rel="stylesheet">
 
   <!-- Schema.org JSON-LD -->
@@ -51,7 +66,7 @@
     "@type": "Person",
     "name": "Hady Fofana",
     "jobTitle": "Responsable Développement",
-    "description": "Développeur Full Stack Java / Spring Boot / Angular. Responsable Développement chez Groupe Xpert Pro à Bamako, Mali.",
+    "description": "Responsable Développement chez Groupe Xpert Pro à Bamako, Mali. Java / Spring Boot / Angular.",
     "email": "hadyfofana72@gmail.com",
     "url": "https://hedycarter.github.io",
     "image": "https://hedycarter.github.io/assets/img/og-hady.jpg",
@@ -68,8 +83,7 @@
     ],
     "knowsAbout": ["Java", "Spring Boot", "Angular", "Ionic", "Docker", "MySQL", "Redis", "GitLab CI", "Software Architecture"],
     "alumniOf": [
-      { "@type": "EducationalOrganization", "name": "Institut Privé IP-SMART" },
-      { "@type": "EducationalOrganization", "name": "University of Alberta" }
+      { "@type": "EducationalOrganization", "name": "Institut Privé IP-SMART" }
     ]
   }
   </script>
@@ -86,7 +100,6 @@
         <ul>
           <li><a href="#about" data-i18n="nav.about">Profil</a></li>
           <li><a href="#portfolio" data-i18n="nav.portfolio">Projets</a></li>
-          <li><a href="#standards" data-i18n="nav.standards">Standards</a></li>
           <li><a href="#resume" data-i18n="nav.resume">Parcours</a></li>
           <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
         </ul>
@@ -114,16 +127,17 @@
     <section id="hero" class="hero">
       <div class="container hero-inner">
         <div class="hero-text">
-          <p class="hero-eyebrow" data-i18n="hero.eyebrow">Responsable Développement · Groupe Xpert Pro</p>
-          <h1 class="hero-title">Hady Fofana</h1>
-          <p class="hero-lead" data-i18n="hero.lead">Je construis le logiciel de l'économie réelle en Afrique de l'Ouest — des PME aux mines, du backend Java à l'interface.</p>
+          <p class="hero-eyebrow" data-i18n="hero.eyebrow">Hady Fofana · Responsable Développement, Groupe Xpert Pro</p>
+          <h1 class="hero-title" data-i18n="hero.title">Je construis le logiciel de l'économie réelle en Afrique de l'Ouest.</h1>
+          <p class="hero-lead" data-i18n="hero.lead">Des PME aux mines, du backend Java à l'interface&nbsp;: des produits en production, utilisés chaque jour au Mali.</p>
           <!-- La carte du travail : un trait relie les quatre secteurs, chacun mène à son projet -->
           <nav class="hero-map" aria-label="Mes projets par secteur" data-i18n-aria="map.label">
             <ol>
               <li><a href="#p-tchakeda" class="hm-node" style="--i: 0"><span class="hm-dot" aria-hidden="true"></span><span class="hm-sector" data-i18n="map.s1">PME</span><span class="hm-project">Tchakeda</span></a></li>
-              <li><a href="#p-atc" class="hm-node" style="--i: 1"><span class="hm-dot" aria-hidden="true"></span><span class="hm-sector" data-i18n="map.s2">Industrie</span><span class="hm-project">Groupe ATC</span></a></li>
-              <li><a href="#p-africred" class="hm-node" style="--i: 2"><span class="hm-dot" aria-hidden="true"></span><span class="hm-sector" data-i18n="map.s3">Microfinance</span><span class="hm-project">AfriCred</span></a></li>
-              <li><a href="#p-agro" class="hm-node" style="--i: 3"><span class="hm-dot" aria-hidden="true"></span><span class="hm-sector" data-i18n="map.s4">Agriculture</span><span class="hm-project">Smart Agro</span></a></li>
+              <li><a href="#p-agro" class="hm-node" style="--i: 1"><span class="hm-dot" aria-hidden="true"></span><span class="hm-sector" data-i18n="map.s4">Agriculture</span><span class="hm-project">Smart Agro</span></a></li>
+              <li><a href="#p-atc" class="hm-node" style="--i: 2"><span class="hm-dot" aria-hidden="true"></span><span class="hm-sector" data-i18n="map.s2">Industrie</span><span class="hm-project">Groupe ATC</span></a></li>
+              <li><a href="#p-africred" class="hm-node" style="--i: 3"><span class="hm-dot" aria-hidden="true"></span><span class="hm-sector" data-i18n="map.s3">Microfinance</span><span class="hm-project">AfriCred</span></a></li>
+              <li><a href="#p-prochemarket" class="hm-node" style="--i: 4"><span class="hm-dot" aria-hidden="true"></span><span class="hm-sector" data-i18n="map.s5">Commerce</span><span class="hm-project">ProcheMarket</span></a></li>
             </ol>
             <span class="hm-line" aria-hidden="true"><span class="hm-packet"></span></span>
           </nav>
@@ -133,7 +147,7 @@
           </div>
         </div>
         <div class="hero-photo">
-          <img src="assets/img/hady.webp" width="640" height="742" alt="Hady Fofana, Responsable Développement chez Groupe Xpert Pro" fetchpriority="high">
+          <img src="assets/img/hady.webp" srcset="assets/img/hady-320.webp 320w, assets/img/hady.webp 640w" sizes="(max-width: 899px) 112px, 340px" width="640" height="742" alt="Hady Fofana, Responsable Développement chez Groupe Xpert Pro" fetchpriority="high">
         </div>
       </div>
     </section>
@@ -147,9 +161,9 @@
 
         <div class="about-grid">
           <div class="about-text reveal">
-            <h3 data-i18n="about.h3">Développeur Full Stack — Java · Spring Boot · Angular</h3>
-            <p data-i18n="about.p1">Développeur Full Stack avec 4+ ans d'expérience, spécialisé en Java&nbsp;/&nbsp;Spring Boot et Angular. Depuis février&nbsp;2025, je dirige le département développement au <strong>Groupe Xpert Pro</strong> — architecture applicative, choix technologiques, sécurité et accompagnement de l'équipe.</p>
-            <p data-i18n="about.p2">Côté produit, <strong>Tchakeda</strong> : une plateforme SaaS multi-tenant en production, avec 214+ entreprises et 381+ utilisateurs. Côté FinTech, une application de microfinance chez <strong>AfriCred</strong> : depuis un wallet connecté à Orange Money, les clients épargnent, demandent et remboursent leurs prêts, obtiennent une carte virtuelle et échangent avec les agents d'assistance. Côté web, la refonte complète du site du <strong>Groupe ATC</strong>, en HTML, CSS et JavaScript, avec son propre système de mouvement.</p>
+            <h3 data-i18n="about.h3">Responsable Développement — Java · Spring Boot · Angular</h3>
+            <p data-i18n="about.p1">4+ ans d'expérience en développement Full Stack, spécialisé en Java&nbsp;/&nbsp;Spring Boot et Angular. Depuis février&nbsp;2025, je dirige le département développement au <strong>Groupe Xpert Pro</strong> — architecture applicative, choix technologiques, sécurité et accompagnement de l'équipe.</p>
+            <p data-i18n="about.p2">Côté produit, <strong>Tchakeda</strong> : une plateforme SaaS multi-tenant en production, avec 300+ entreprises et 500+ utilisateurs. Côté FinTech, une application de microfinance chez <strong>AfriCred</strong> : depuis un wallet connecté à Orange Money, les clients épargnent, demandent et remboursent leurs prêts, obtiennent une carte virtuelle et échangent avec les agents d'assistance. Côté web, la refonte complète du site du <strong>Groupe ATC</strong>, en HTML, CSS et JavaScript, avec son propre système de mouvement.</p>
             <dl class="stack-line">
               <div><dt>Backend</dt><dd>Java · Spring Boot · Spring Security · JPA / Hibernate · REST · JWT</dd></div>
               <div><dt data-i18n="st.front">Front & mobile</dt><dd>Angular · TypeScript · Ionic · HTML / CSS / JS · <span data-i18n="sk.tag.motion">Motion (CSS / SVG)</span></dd></div>
@@ -170,16 +184,16 @@
               <dd>4+</dd>
             </div>
             <div class="stat">
-              <dt data-i18n="cnt.projects">Projets livrés</dt>
-              <dd>10+</dd>
-            </div>
-            <div class="stat">
-              <dt data-i18n="cnt.domains">Domaines : SaaS, FinTech, AgriTech, industrie</dt>
-              <dd>4</dd>
-            </div>
-            <div class="stat">
               <dt data-i18n="cnt.companies">Entreprises sur Tchakeda</dt>
-              <dd><span data-count="214">214</span>+</dd>
+              <dd><span data-count="300">300</span>+</dd>
+            </div>
+            <div class="stat">
+              <dt data-i18n="cnt.users">Utilisateurs sur Tchakeda</dt>
+              <dd><span data-count="500">500</span>+</dd>
+            </div>
+            <div class="stat">
+              <dt data-i18n="cnt.instance">Instance pour toutes ces entreprises, sans données croisées</dt>
+              <dd>1</dd>
             </div>
           </dl>
         </div>
@@ -191,29 +205,46 @@
       <div class="container">
         <header class="sec-head">
           <h2><span class="sec-num" aria-hidden="true">02</span><span data-i18n="sec.portfolio">Mes Projets</span></h2>
-          <p data-i18n="sec.portfolio.sub">PME, microfinance, agriculture, industrie : quatre problèmes réels, résolus en production.</p>
+          <p data-i18n="sec.portfolio.sub">PME, agriculture, industrie, microfinance, commerce : cinq problèmes réels, résolus en production.</p>
         </header>
 
-        <!-- Tchakeda — SaaS -->
+        <!-- Tchakeda — SaaS : visite guidée de l'application réelle (compte de démonstration) -->
         <article class="project reveal" id="p-tchakeda">
-          <div class="project-media reel" id="reel-tchakeda" style="--reel-bg: #f8fafc">
-            <video class="reel-video" muted loop playsinline preload="none" poster="assets/video/tchakeda-prologue.webp" aria-label="Extrait animé de la landing Tchakeda : douze modules éparpillés se rangent, puis deviennent l'application" data-i18n-aria="reel.label1"></video>
-            <div class="reel-bar">
-              <div class="reel-chapters">
-                  <button type="button" class="reel-chip is-active" data-clip="tchakeda-prologue" data-bg="#f8fafc" data-label="reel.label1" aria-pressed="true" data-i18n="reel.ch1">Chaos → ordre</button>
-                  <button type="button" class="reel-chip" data-clip="tchakeda-couches" data-bg="#f8fafc" data-label="reel.label2" aria-pressed="false" data-i18n="reel.ch2">Vu de l'intérieur</button>
-              </div>
-              <button type="button" class="reel-toggle" aria-label="Mettre l'animation en pause"><i class="bi bi-pause-fill" aria-hidden="true"></i></button>
-            </div>
-          </div>
-          <div class="project-body">
+          <figure class="tour" data-tour>
+            <ol class="tour-steps">
+              <li class="tour-step is-on" data-focus="60,40,1.3">
+                <img src="assets/img/projects/tchakeda/tableau-de-bord.webp" srcset="assets/img/projects/tchakeda/tableau-de-bord-1200.webp 1200w, assets/img/projects/tchakeda/tableau-de-bord.webp 2000w" sizes="(max-width: 899px) calc(100vw - 32px), 620px" width="2000" height="1127" alt="Tchakeda : tableau de bord avec douze modules" loading="lazy">
+                <span class="tour-name" data-i18n="tk.c.dash">Tableau de bord</span>
+                <p class="tour-cap"><b data-i18n="tk.cap1.t">Douze modules, un seul tableau de bord</b><span data-i18n="tk.cap1.p">Produits, ventes, point de vente, stocks, facturation, journal, clients, boutiques, utilisateurs, fournisseurs, inventaire, codes-barres.</span></p>
+              </li>
+              <li class="tour-step" data-focus="100,45,1.55">
+                <img src="assets/img/projects/tchakeda/pos.webp" srcset="assets/img/projects/tchakeda/pos-1200.webp 1200w, assets/img/projects/tchakeda/pos.webp 2000w" sizes="(max-width: 899px) calc(100vw - 32px), 620px" width="2000" height="1127" alt="Tchakeda : point de vente avec catégories, produits, stocks, panier et pavé numérique" loading="lazy">
+                <span class="tour-name" data-i18n="tk.c.pos">Point de vente</span>
+                <p class="tour-cap"><b data-i18n="tk.cap2.t">Une caisse pensée pour aller vite</b><span data-i18n="tk.cap2.p">Catégories avec leur nombre de produits, stocks affichés, panier et pavé numérique pour la quantité, la remise et le prix.</span></p>
+              </li>
+              <li class="tour-step" data-focus="50,45,1.4">
+                <img src="assets/img/projects/tchakeda/pos-paiement.webp" srcset="assets/img/projects/tchakeda/pos-paiement-1200.webp 1200w, assets/img/projects/tchakeda/pos-paiement.webp 2000w" sizes="(max-width: 899px) calc(100vw - 32px), 620px" width="2000" height="1127" alt="Tchakeda : paiement en espèces, mobile money, carte ou crédit" loading="lazy">
+                <span class="tour-name" data-i18n="tk.c.pay">Paiement</span>
+                <p class="tour-cap"><b data-i18n="tk.cap3.t">Quatre modes de paiement</b><span data-i18n="tk.cap3.p">Espèces, mobile money, carte ou crédit, avec le montant à rendre calculé.</span></p>
+              </li>
+              <li class="tour-step" data-focus="45,55,1.25">
+                <img src="assets/img/projects/tchakeda/pos-recu.webp" srcset="assets/img/projects/tchakeda/pos-recu-1200.webp 1200w, assets/img/projects/tchakeda/pos-recu.webp 2000w" sizes="(max-width: 899px) calc(100vw - 32px), 620px" width="2000" height="1127" alt="Tchakeda : reçu avec code-barres, envoi par e-mail ou WhatsApp" loading="lazy">
+                <span class="tour-name" data-i18n="tk.c.receipt">Reçu</span>
+                <p class="tour-cap"><b data-i18n="tk.cap4.t">Un reçu prêt à partager</b><span data-i18n="tk.cap4.p">Reçu ou facture avec code-barres, impression, envoi par e-mail ou WhatsApp.</span></p>
+              </li>
+            </ol>
+            <figcaption class="tour-note" data-i18n="pj.demo">Compte de démonstration · données fictives</figcaption>
+          </figure>
+          <div class="project-body reveal">
             <p class="badge"><span class="badge-dot" aria-hidden="true"></span><span data-i18n="portfolio.badge">En production · Groupe Xpert Pro</span></p>
             <h3 class="project-title">Tchakeda</h3>
-            <p class="project-problem" data-i18n="pf.tchakeda.problem">Isoler 214 entreprises dans une seule instance.</p>
+            <p class="project-problem" data-i18n="pf.tchakeda.problem">Donner à 300 entreprises leur propre outil de gestion, sur une seule instance.</p>
             <p class="project-desc" data-i18n="pf.tchakeda">Plateforme SaaS multi-tenant de gestion d'entreprise — conception, architecture et développement Full Stack</p>
+            <p class="project-modules" data-i18n="pf.tchakeda.modules">Tableau de bord, ventes, point de vente, stocks, facturation, comptabilité, clients, fournisseurs, inventaire, codes-barres.</p>
+            <p class="project-local" data-i18n="pf.tchakeda.local">Localisé jusqu'à la langue&nbsp;: dans l'application, le point de vente s'appelle <i lang="bm">Feere kɛ yɔrɔ</i>, en bambara.</p>
             <ul class="project-stats">
-              <li><strong>214+</strong> <span data-i18n="pf.tchakeda.s1">entreprises inscrites</span></li>
-              <li><strong>381+</strong> <span data-i18n="pf.tchakeda.s2">utilisateurs actifs</span></li>
+              <li><strong>300+</strong> <span data-i18n="pf.tchakeda.s1">entreprises inscrites</span></li>
+              <li><strong>500+</strong> <span data-i18n="pf.tchakeda.s2">utilisateurs</span></li>
             </ul>
             <ul class="tags">
               <li>Java</li><li>Spring Boot</li><li>Angular</li><li>MySQL</li><li>Redis</li><li>Docker</li><li>GitLab CI</li>
@@ -231,12 +262,12 @@
         <div class="tenant-demo reveal" id="tenant-demo">
           <div class="td-head">
             <p class="td-kicker" data-i18n="demo.kicker">Démonstration · isolation multi-tenant</p>
-            <h3 class="td-title" data-i18n="demo.title">Une instance. 214 entreprises. Aucune donnée croisée.</h3>
-            <p class="td-hint" data-i18n="demo.hint">Choisissez une entreprise, ou encaissez une vente au hasard. Son tableau de bord se met à jour ; les 213 autres n'en voient rien.</p>
+            <h3 class="td-title" data-i18n="demo.title">Une instance. 300 entreprises. Aucune donnée croisée.</h3>
+            <p class="td-hint" data-i18n="demo.hint">Choisissez une entreprise, ou encaissez une vente au hasard. Son tableau de bord se met à jour ; les 299 autres n'en voient rien.</p>
           </div>
           <div class="td-body">
             <div class="td-grid-col">
-              <div class="td-grid" id="td-grid" role="group" aria-label="214 entreprises clientes de Tchakeda" data-i18n-aria="demo.grid"></div>
+              <div class="td-grid" id="td-grid" role="group" aria-label="300 entreprises clientes de Tchakeda" data-i18n-aria="demo.grid"></div>
               <ol class="td-path" aria-hidden="true">
                 <li class="td-node" data-step="0">Angular</li>
                 <li class="td-link" data-step="1"></li>
@@ -247,7 +278,7 @@
               <div class="td-log">
                 <p class="td-line" data-line="0"><span class="td-dim">POST</span> /api/ventes <span class="td-dim">· JWT { tenant_id: <span class="td-id">87</span> }</span></p>
                 <p class="td-line" data-line="1"><span class="td-dim">…</span> WHERE tenant_id = <span class="td-id">87</span></p>
-                <p class="td-line td-result" data-line="2" role="status"><span class="td-ok">200 OK</span> · <span data-i18n="demo.result">1 entreprise mise à jour sur 214, les 213 autres n'ont rien vu</span></p>
+                <p class="td-line td-result" data-line="2" role="status"><span class="td-ok">200 OK</span> · <span data-i18n="demo.result">1 entreprise mise à jour sur 300, les 299 autres n'ont rien vu</span></p>
               </div>
             </div>
 
@@ -280,124 +311,15 @@
               <button type="button" class="btn btn-light td-send" id="td-send">
                 <i class="bi bi-cart-plus" aria-hidden="true"></i> <span data-i18n="demo.send">Encaisser une vente</span>
               </button>
+              <!-- Le reçu : imprimé pour l'entreprise ciblée, et pour elle seule -->
+              <div class="rc-printer">
+                <span class="rc-slot" aria-hidden="true"></span>
+                <div class="rc-paper" id="rc-paper"></div>
+              </div>
               <p class="td-note" data-i18n="demo.note">Boutique de démonstration : identifiants et montants fictifs, architecture réelle de Tchakeda.</p>
             </div>
           </div>
         </div>
-
-        <!-- Groupe ATC — site institutionnel -->
-        <article class="project project--reverse project--next reveal" id="p-atc">
-          <div class="project-media reel" id="reel-atc" style="--reel-bg: #1c2633">
-            <video class="reel-video" muted loop playsinline preload="none" poster="assets/video/atc-plan.webp" aria-label="Extrait animé du site Groupe ATC : le plan du chantier se trace sur la photo, puis la photo se développe" data-i18n-aria="reel.atc.label1"></video>
-            <div class="reel-bar">
-              <div class="reel-chapters">
-                  <button type="button" class="reel-chip is-active" data-clip="atc-plan" data-bg="#1c2633" data-label="reel.atc.label1" aria-pressed="true" data-i18n="reel.atc1">Ouverture</button>
-                  <button type="button" class="reel-chip" data-clip="atc-chantier" data-bg="#00235a" data-label="reel.atc.label2" aria-pressed="false" data-i18n="reel.atc2">Plan → chantier</button>
-                  <button type="button" class="reel-chip" data-clip="atc-reseau" data-bg="#ffffff" data-label="reel.atc.label3" aria-pressed="false" data-i18n="reel.atc3">Réseau</button>
-              </div>
-              <button type="button" class="reel-toggle" aria-label="Mettre l'animation en pause"><i class="bi bi-pause-fill" aria-hidden="true"></i></button>
-            </div>
-          </div>
-          <div class="project-body">
-            <p class="badge"><span data-i18n="pf.atc.badge">Refonte · prête pour la mise en ligne</span></p>
-            <h3 class="project-title">Groupe ATC</h3>
-            <p class="project-problem" data-i18n="pf.atc.problem">Faire comprendre un groupe industriel de 9 pays en quelques secondes.</p>
-            <p class="project-desc" data-i18n="pf.atc.desc2">Refonte complète du site institutionnel d'un groupe de construction métallique et de projets miniers : 29 pages en HTML, CSS et JavaScript, sans framework, animées autour d'un seul geste, le trait orange du traceur de plans.</p>
-            <ul class="project-stats">
-              <li><strong>29</strong> <span data-i18n="pf.atc.s1">pages</span></li>
-              <li><strong>13</strong> <span data-i18n="pf.atc.s2">métiers animés</span></li>
-              <li><strong>0</strong> <span data-i18n="pf.atc.s3">framework</span></li>
-            </ul>
-            <ul class="tags">
-              <li>HTML5</li><li>CSS3</li><li>JavaScript</li><li>SVG</li><li>View Transitions</li><li>SEO</li>
-            </ul>
-          </div>
-        </article>
-
-        <!-- AfriCred — FinTech -->
-        <article class="project project--next reveal" id="p-africred">
-          <!-- Scène « le wallet » : Orange Money → solde → remboursement d'échéance → carte virtuelle -->
-          <div class="project-media scene scene--wallet" id="scene-wallet">
-            <p class="visually-hidden" data-i18n="sw.desc">Démonstration animée : un rechargement Orange Money crédite le wallet, une partie est épargnée, l'échéance du prêt est remboursée depuis le wallet, une carte virtuelle est activée, puis un agent d'assistance répond au client.</p>
-            <div class="scene-stage" aria-hidden="true">
-              <div class="sw-om"><span class="sw-om-logo">OM</span><b>Orange Money</b><small>+25 000 F</small></div>
-              <span class="sw-link"><span class="sw-packet"></span></span>
-              <div class="sw-phone">
-                <div class="sw-screen">
-                  <p class="sw-toast" data-sw="toast"></p>
-                  <p class="sw-top"><span class="sw-bell"><i class="bi bi-bell"></i><span class="sw-bell-dot"></span></span><b>Hady Fof</b><img class="sw-avatar" src="assets/img/hady.webp" alt="" width="40" height="40" loading="lazy"></p>
-                  <div class="sw-balance">
-                    <p class="sw-balance-label"><span data-i18n="sw.balance">Épargne Totale</span><small><span data-i18n="sw.wal">Wallet</span> · <span data-sw="wal">0</span> F</small></p>
-                    <p class="sw-balance-amount"><strong data-sw="bal">1 240</strong><small>FCFA</small></p>
-                    <span class="sw-coin" aria-hidden="true">+10 000</span>
-                  </div>
-                  <div class="sw-stats">
-                    <p class="sw-stats-title" data-i18n="sw.stats">Statistiques d'épargne</p>
-                    <div class="sw-donut">
-                      <svg viewBox="0 0 120 120">
-                        <defs>
-                          <linearGradient id="sw-g1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#a98bc0"/><stop offset="1" stop-color="#3f4660"/></linearGradient>
-                          <linearGradient id="sw-g2" x1="1" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f2b46a"/><stop offset="1" stop-color="#d9d4bf"/></linearGradient>
-                        </defs>
-                        <circle class="sw-ring-track" cx="60" cy="60" r="42" />
-                        <circle class="sw-seg sw-seg--2" cx="60" cy="60" r="42" pathLength="100" />
-                        <circle class="sw-seg sw-seg--1" cx="60" cy="60" r="42" pathLength="100" />
-                      </svg>
-                      <p class="sw-donut-center"><b data-sw="tot">131 230</b><small>Total</small></p>
-                    </div>
-                    <p class="sw-legend"><span><i class="sw-lg1"></i><span data-i18n="sw.lg1">Total achats</span></span><span><i class="sw-lg2"></i><span data-i18n="sw.lg2">Total dépenses</span></span></p>
-                  </div>
-                  <div class="sw-minis">
-                    <div class="sw-mini sw-mini--finance">
-                      <span class="sw-mini-ring"><svg viewBox="0 0 40 40"><circle cx="20" cy="20" r="16" class="sw-mini-track"/><circle cx="20" cy="20" r="16" class="sw-mini-arc" pathLength="100" data-sw="bar"/></svg><i class="bi bi-graph-up-arrow"></i></span>
-                      <p><b>Finance</b><small><span data-i18n="sw.loan">Prêt</span> <span data-sw="paid">2</span>/6</small></p>
-                    </div>
-                    <div class="sw-mini sw-mini--record">
-                      <span class="sw-mini-ring"><svg viewBox="0 0 40 40"><circle cx="20" cy="20" r="16" class="sw-mini-track"/><circle cx="20" cy="20" r="16" class="sw-mini-arc" pathLength="100"/></svg><i class="bi bi-graph-up"></i></span>
-                      <p><b>Record</b><small data-i18n="sw.record">Historique</small></p>
-                    </div>
-                  </div>
-                </div>
-                <p class="sw-nav"><span class="sw-nav-pill"><i class="bi bi-pie-chart"></i><u data-i18n="sw.home">Accueil</u></span><i class="bi bi-wallet2"></i><i class="bi bi-bag"></i><i class="bi bi-person-circle"></i></p>
-              </div>
-              <div class="sw-card">
-                <p class="sw-card-top"><span class="sw-card-chip"><i></i><i></i><i></i></span><span class="sw-card-brand"><span class="sw-card-logo"></span>AfriCred pay</span></p>
-                <span class="sw-card-num">4563 •••• •••• 4821</span>
-                <p class="sw-card-bottom"><small data-i18n="sw.card">Carte virtuelle · active</small><span class="sw-mc"><i></i><i></i></span></p>
-              </div>
-              <div class="sw-chat">
-                <p class="sw-chat-head"><span class="sw-chat-dot"></span><span data-i18n="sw.chat.head">Assistance · en ligne</span></p>
-                <p class="sw-msg sw-msg--me" data-i18n="sw.chat.q">Ma carte est-elle active ?</p>
-                <p class="sw-msg sw-msg--typing"><i></i><i></i><i></i></p>
-                <p class="sw-msg sw-msg--agent" data-i18n="sw.chat.a">Oui, elle est active. Bonne journée !</p>
-              </div>
-            </div>
-            <div class="scene-bar">
-              <p class="scene-note" data-i18n="scene.note">Démonstration · données fictives</p>
-              <button type="button" class="scene-replay" aria-label="Rejouer la démonstration" data-i18n-aria="scene.replay"><i class="bi bi-arrow-counterclockwise" aria-hidden="true"></i></button>
-            </div>
-          </div>
-          <div class="project-body">
-            <p class="badge"><span data-i18n="pf.africred.badge">CTO · 2022 – 2024</span></p>
-            <h3 class="project-title">AfriCred</h3>
-            <p class="project-problem" data-i18n="pf.africred.problem">Demander et rembourser un prêt depuis son téléphone.</p>
-            <p class="project-desc" data-i18n="exp.africred.desc">Institution de microfinance au service des micro-entrepreneurs, TPE et PME.</p>
-            <p class="cs-stack-flow project-flow" aria-label="Demande de prêt, puis Orange Money et wallet, puis remboursement" data-i18n-aria="pf.africred.flow">
-              <span data-i18n="pf.africred.f1">Demande de prêt</span><i class="bi bi-arrow-right" aria-hidden="true"></i>
-              <span>Orange Money <em>⇄</em> Wallet</span><i class="bi bi-arrow-right" aria-hidden="true"></i>
-              <span data-i18n="pf.africred.f3">Remboursement</span>
-            </p>
-            <ul class="project-points">
-              <li data-i18n="exp.li.africred1">Application mobile pour les clients : épargne, demande de prêt, remboursement, carte virtuelle et messagerie avec les agents d'assistance, directement depuis leur wallet.</li>
-              <li data-i18n="exp.li.africred2">Wallet connecté au compte Orange Money du client pour faciliter les transactions.</li>
-              <li data-i18n="exp.li.africred3">Architecture backend Java / Spring Boot (API REST, Spring Security, JWT) et application Ionic / Angular.</li>
-              <li data-i18n="exp.li.africred4">Gestion de l'équipe technique et des roadmaps produit.</li>
-            </ul>
-            <ul class="tags">
-              <li>Java</li><li>Spring Boot</li><li>Spring Security</li><li>JWT</li><li>Ionic</li><li>Angular</li><li>Orange Money</li><li data-i18n="pf.africred.tag.save">Épargne</li><li data-i18n="pf.africred.tag.card">Carte virtuelle</li><li data-i18n="pf.africred.tag.chat">Messagerie</li>
-            </ul>
-          </div>
-        </article>
 
         <!-- Smart Agro — AgriTech -->
         <article class="project project--reverse project--next reveal" id="p-agro">
@@ -499,85 +421,271 @@
           </div>
         </article>
 
-        <!-- Autres projets -->
-        <h3 class="sub-title" data-i18n="pf.other">Autres projets</h3>
-        <div class="cards reveal">
-          <article class="card">
-            <img src="assets/img/portfolio/gescabinet.webp" width="1200" height="675" alt="Interface de GesCabinet" loading="lazy">
-            <div class="card-body">
-              <h4>GesCabinet</h4>
-              <p data-i18n="pf.ges.desc">Plateforme de prise de rendez-vous médical.</p>
-              <p class="card-stack">Angular · Spring Boot · Spring Security · MySQL</p>
-              <a href="https://tieckby.github.io/SoutenanceODKFront/" target="_blank" rel="noopener" class="link-arrow"><span data-i18n="pf.visit">Voir le site</span> <i class="bi bi-arrow-up-right" aria-hidden="true"></i></a>
+        <!-- Groupe ATC — site institutionnel -->
+        <article class="project project--next reveal" id="p-atc">
+          <div class="project-media reel" id="reel-atc" style="--reel-bg: #1c2633">
+            <video class="reel-video" muted loop playsinline preload="none" poster="assets/video/atc-plan.webp" aria-label="Extrait animé du site Groupe ATC : le plan du chantier se trace sur la photo, puis la photo se développe" data-i18n-aria="reel.atc.label1"></video>
+            <div class="reel-bar">
+              <div class="reel-chapters">
+                  <button type="button" class="reel-chip is-active" data-clip="atc-plan" data-bg="#1c2633" data-label="reel.atc.label1" aria-pressed="true" data-i18n="reel.atc1">Ouverture</button>
+                  <button type="button" class="reel-chip" data-clip="atc-chantier" data-bg="#00235a" data-label="reel.atc.label2" aria-pressed="false" data-i18n="reel.atc2">Plan → chantier</button>
+                  <button type="button" class="reel-chip" data-clip="atc-reseau" data-bg="#ffffff" data-label="reel.atc.label3" aria-pressed="false" data-i18n="reel.atc3">Réseau</button>
+              </div>
+              <button type="button" class="reel-toggle" aria-label="Mettre l'animation en pause"><i class="bi bi-pause-fill" aria-hidden="true"></i></button>
             </div>
-          </article>
-          <article class="card">
-            <img src="assets/img/portfolio/interim-africa.webp" width="1400" height="840" alt="Site Mon Agence Interim Africa" loading="lazy">
-            <div class="card-body">
-              <h4>Mon Agence Interim Africa</h4>
-              <p data-i18n="pf.interim.desc">Mise en relation entre demandeurs d'emploi et recruteurs.</p>
-              <p class="card-stack">Web</p>
-              <a href="https://monagenceinterimafrica.com" target="_blank" rel="noopener" class="link-arrow"><span data-i18n="pf.visit">Voir le site</span> <i class="bi bi-arrow-up-right" aria-hidden="true"></i></a>
+          </div>
+          <div class="project-body">
+            <p class="badge"><span class="badge-dot badge-dot--off" aria-hidden="true"></span><span data-i18n="pf.atc.badge">Refonte · pas encore en ligne</span></p>
+            <h3 class="project-title">Groupe ATC</h3>
+            <p class="project-problem" data-i18n="pf.atc.problem">Faire comprendre un groupe industriel de 9 pays en quelques secondes.</p>
+            <p class="project-desc" data-i18n="pf.atc.desc2">Refonte complète du site institutionnel d'un groupe de construction métallique et de projets miniers : 29 pages en HTML, CSS et JavaScript, sans framework, animées autour d'un seul geste, le trait orange du traceur de plans.</p>
+            <ul class="project-stats">
+              <li><strong>29</strong> <span data-i18n="pf.atc.s1">pages</span></li>
+              <li><strong>13</strong> <span data-i18n="pf.atc.s2">métiers animés</span></li>
+              <li><strong>0</strong> <span data-i18n="pf.atc.s3">framework</span></li>
+            </ul>
+            <ul class="tags">
+              <li>HTML5</li><li>CSS3</li><li>JavaScript</li><li>SVG</li><li>View Transitions</li><li>SEO</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- AfriCred — FinTech -->
+        <article class="project project--reverse project--next reveal" id="p-africred">
+          <!-- Scène « le wallet » : Orange Money → solde → remboursement d'échéance → carte virtuelle -->
+          <div class="project-media scene scene--wallet" id="scene-wallet">
+            <p class="visually-hidden" data-i18n="sw.desc">Démonstration animée : un rechargement Orange Money crédite le wallet, une partie est épargnée, l'échéance du prêt est remboursée depuis le wallet, une carte virtuelle est activée, puis un agent d'assistance répond au client.</p>
+            <div class="scene-stage" aria-hidden="true">
+              <div class="sw-om"><span class="sw-om-logo">OM</span><b>Orange Money</b><small>+25 000 F</small></div>
+              <span class="sw-link"><span class="sw-packet"></span></span>
+              <div class="sw-phone">
+                <div class="sw-screen">
+                  <p class="sw-toast" data-sw="toast"></p>
+                  <p class="sw-top"><span class="sw-bell"><i class="bi bi-bell"></i><span class="sw-bell-dot"></span></span><b>Mariam T.</b><span class="sw-avatar sw-avatar--initial">M</span></p>
+                  <div class="sw-balance">
+                    <p class="sw-balance-label"><span data-i18n="sw.balance">Épargne Totale</span><small><span data-i18n="sw.wal">Wallet</span> · <span data-sw="wal">0</span> F</small></p>
+                    <p class="sw-balance-amount"><strong data-sw="bal">1 240</strong><small>FCFA</small></p>
+                    <span class="sw-coin" aria-hidden="true">+10 000</span>
+                  </div>
+                  <div class="sw-stats">
+                    <p class="sw-stats-title" data-i18n="sw.stats">Statistiques d'épargne</p>
+                    <div class="sw-donut">
+                      <svg viewBox="0 0 120 120">
+                        <defs>
+                          <linearGradient id="sw-g1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#a98bc0"/><stop offset="1" stop-color="#3f4660"/></linearGradient>
+                          <linearGradient id="sw-g2" x1="1" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f2b46a"/><stop offset="1" stop-color="#d9d4bf"/></linearGradient>
+                        </defs>
+                        <circle class="sw-ring-track" cx="60" cy="60" r="42" />
+                        <circle class="sw-seg sw-seg--2" cx="60" cy="60" r="42" pathLength="100" />
+                        <circle class="sw-seg sw-seg--1" cx="60" cy="60" r="42" pathLength="100" />
+                      </svg>
+                      <p class="sw-donut-center"><b data-sw="tot">131 230</b><small>Total</small></p>
+                    </div>
+                    <p class="sw-legend"><span><i class="sw-lg1"></i><span data-i18n="sw.lg1">Total achats</span></span><span><i class="sw-lg2"></i><span data-i18n="sw.lg2">Total dépenses</span></span></p>
+                  </div>
+                  <div class="sw-minis">
+                    <div class="sw-mini sw-mini--finance">
+                      <span class="sw-mini-ring"><svg viewBox="0 0 40 40"><circle cx="20" cy="20" r="16" class="sw-mini-track"/><circle cx="20" cy="20" r="16" class="sw-mini-arc" pathLength="100" data-sw="bar"/></svg><i class="bi bi-graph-up-arrow"></i></span>
+                      <p><b>Finance</b><small><span data-i18n="sw.loan">Prêt</span> <span data-sw="paid">2</span>/6</small></p>
+                    </div>
+                    <div class="sw-mini sw-mini--record">
+                      <span class="sw-mini-ring"><svg viewBox="0 0 40 40"><circle cx="20" cy="20" r="16" class="sw-mini-track"/><circle cx="20" cy="20" r="16" class="sw-mini-arc" pathLength="100"/></svg><i class="bi bi-graph-up"></i></span>
+                      <p><b>Record</b><small data-i18n="sw.record">Historique</small></p>
+                    </div>
+                  </div>
+                </div>
+                <p class="sw-nav"><span class="sw-nav-pill"><i class="bi bi-pie-chart"></i><u data-i18n="sw.home">Accueil</u></span><i class="bi bi-wallet2"></i><i class="bi bi-bag"></i><i class="bi bi-person-circle"></i></p>
+              </div>
+              <div class="sw-card">
+                <p class="sw-card-top"><span class="sw-card-chip"><i></i><i></i><i></i></span><span class="sw-card-brand"><span class="sw-card-logo"></span>AfriCred pay</span></p>
+                <span class="sw-card-num">4563 •••• •••• 4821</span>
+                <p class="sw-card-bottom"><small data-i18n="sw.card">Carte virtuelle · active</small></p>
+              </div>
+              <div class="sw-chat">
+                <p class="sw-chat-head"><span class="sw-chat-dot"></span><span data-i18n="sw.chat.head">Assistance · en ligne</span></p>
+                <p class="sw-msg sw-msg--me" data-i18n="sw.chat.q">Ma carte est-elle active ?</p>
+                <p class="sw-msg sw-msg--typing"><i></i><i></i><i></i></p>
+                <p class="sw-msg sw-msg--agent" data-i18n="sw.chat.a">Oui, elle est active. Bonne journée !</p>
+              </div>
             </div>
-          </article>
+            <div class="scene-bar">
+              <p class="scene-note" data-i18n="scene.note">Démonstration · données fictives</p>
+              <button type="button" class="scene-replay" aria-label="Rejouer la démonstration" data-i18n-aria="scene.replay"><i class="bi bi-arrow-counterclockwise" aria-hidden="true"></i></button>
+            </div>
+          </div>
+          <div class="project-body">
+            <p class="badge"><span data-i18n="pf.africred.badge">CTO · 2022 – 2024</span></p>
+            <h3 class="project-title">AfriCred</h3>
+            <p class="project-problem" data-i18n="pf.africred.problem">Demander et rembourser un prêt depuis son téléphone.</p>
+            <p class="project-desc" data-i18n="exp.africred.desc">Institution de microfinance au service des micro-entrepreneurs, TPE et PME.</p>
+            <p class="cs-stack-flow project-flow" aria-label="Demande de prêt, puis Orange Money et wallet, puis remboursement" data-i18n-aria="pf.africred.flow">
+              <span data-i18n="pf.africred.f1">Demande de prêt</span><i class="bi bi-arrow-right" aria-hidden="true"></i>
+              <span>Orange Money <em>⇄</em> Wallet</span><i class="bi bi-arrow-right" aria-hidden="true"></i>
+              <span data-i18n="pf.africred.f3">Remboursement</span>
+            </p>
+            <ul class="project-points">
+              <li data-i18n="exp.li.africred1">Application mobile pour les clients : épargne, demande de prêt, remboursement, carte virtuelle et messagerie avec les agents d'assistance, directement depuis leur wallet.</li>
+              <li data-i18n="exp.li.africred2">Wallet connecté au compte Orange Money du client pour faciliter les transactions.</li>
+            </ul>
+            <ul class="tags">
+              <li>Java</li><li>Spring Boot</li><li>Spring Security</li><li>JWT</li><li>Ionic</li><li>Angular</li><li>Orange Money</li><li data-i18n="pf.africred.tag.save">Épargne</li><li data-i18n="pf.africred.tag.card">Carte virtuelle</li><li data-i18n="pf.africred.tag.chat">Messagerie</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- ProcheMarket — e-commerce (conçu et développé par moi) : visite guidée -->
+        <article class="project project--next" id="p-prochemarket">
+          <figure class="tour" data-tour>
+            <ol class="tour-steps">
+              <li class="tour-step is-on" data-focus="30,55,1.45">
+                <img src="assets/img/projects/prochemarket/livraison-carte.webp" srcset="assets/img/projects/prochemarket/livraison-carte-1200.webp 1200w, assets/img/projects/prochemarket/livraison-carte.webp 2000w" sizes="(max-width: 899px) calc(100vw - 32px), 620px" width="2000" height="1127" alt="Proche Market : « 24 h à Bamako, 72 h partout ailleurs », avec la carte des livraisons au Mali" loading="lazy">
+                <span class="tour-name" data-i18n="pm.c.home">Promesse</span>
+                <p class="tour-cap"><b data-i18n="pm.cap1.t">Une promesse qui tient sur une carte</b><span data-i18n="pm.cap1.p">« 24 h à Bamako, 72 h partout ailleurs » : le délai de livraison est la première chose qu'on lit, tracé depuis Bamako vers chaque région.</span></p>
+              </li>
+              <li class="tour-step" data-focus="33,45,1.45">
+                <img src="assets/img/projects/prochemarket/fiche-produit.webp" srcset="assets/img/projects/prochemarket/fiche-produit-1200.webp 1200w, assets/img/projects/prochemarket/fiche-produit.webp 2000w" sizes="(max-width: 899px) calc(100vw - 32px), 620px" width="2000" height="1127" alt="Proche Market : fiche produit avec bascule Photos / Vue 360°" loading="lazy">
+                <span class="tour-name" data-i18n="pm.c.product">Fiche produit</span>
+                <p class="tour-cap"><b data-i18n="pm.cap2.t">Voir le produit sous tous les angles</b><span data-i18n="pm.cap2.p">Un bouton Photos / Vue 360° : on tourne et on incline la montre avec la souris.</span></p>
+              </li>
+              <li class="tour-step" data-focus="80,60,1.6">
+                <img src="assets/img/projects/prochemarket/panier.webp" srcset="assets/img/projects/prochemarket/panier-1200.webp 1200w, assets/img/projects/prochemarket/panier.webp 2000w" sizes="(max-width: 899px) calc(100vw - 32px), 620px" width="2000" height="1107" alt="Proche Market : panier et résumé de commande" loading="lazy">
+                <span class="tour-name" data-i18n="pm.c.cart">Panier</span>
+                <p class="tour-cap"><b data-i18n="pm.cap3.t">Un panier qui rappelle les règles</b><span data-i18n="pm.cap3.p">« Prix final, à payer à la livraison », délais et annulation sous 3 h, rappelés au moment de commander.</span></p>
+              </li>
+              <li class="tour-step" data-focus="30,45,1.5">
+                <img src="assets/img/projects/prochemarket/commande.webp" srcset="assets/img/projects/prochemarket/commande-1200.webp 1200w, assets/img/projects/prochemarket/commande.webp 2000w" sizes="(max-width: 899px) calc(100vw - 32px), 620px" width="2000" height="1127" alt="Proche Market : commande, choix Bamako ou autres régions et carte du trajet" loading="lazy">
+                <span class="tour-name" data-i18n="pm.c.order">Commande</span>
+                <p class="tour-cap"><b data-i18n="pm.cap4.t">Une date de livraison calculée</b><span data-i18n="pm.cap4.p">Bamako ou autres régions : le trajet s'affiche sur la carte avec la date d'arrivée estimée.</span></p>
+              </li>
+              <li class="tour-step" data-focus="50,50,1.5">
+                <img src="assets/img/projects/prochemarket/confirmation.webp" srcset="assets/img/projects/prochemarket/confirmation-1200.webp 1200w, assets/img/projects/prochemarket/confirmation.webp 2000w" sizes="(max-width: 899px) calc(100vw - 32px), 620px" width="2000" height="1127" alt="Proche Market : confirmation avec trajet et délai d'annulation" loading="lazy">
+                <span class="tour-name" data-i18n="pm.c.confirm">Confirmation</span>
+                <p class="tour-cap"><b data-i18n="pm.cap5.t">Une confirmation qui rassure</b><span data-i18n="pm.cap5.p">Référence à copier, trajet, heure limite d'annulation et appel de confirmation annoncé.</span></p>
+              </li>
+            </ol>
+          </figure>
+          <div class="project-body reveal">
+            <p class="badge"><span class="badge-dot" aria-hidden="true"></span><span data-i18n="pm.badge">En ligne · conçu et développé par moi</span></p>
+            <h3 class="project-title">Proche Market</h3>
+            <p class="project-problem" data-i18n="pm.problem">Commander en ligne au Mali et ne payer qu'à la livraison.</p>
+            <p class="project-desc" data-i18n="pm.desc">Boutique en ligne pour le Mali : catalogue par catégories, panier, commande et suivi. Chaque écran répète la même promesse de livraison, du premier clic à la confirmation.</p>
+            <ul class="project-stats">
+              <li><strong>24 h</strong> <span data-i18n="pm.s1">livraison à Bamako</span></li>
+              <li><strong>72 h</strong> <span data-i18n="pm.s2">autres régions</span></li>
+              <li><strong>3 h</strong> <span data-i18n="pm.s3">pour annuler</span></li>
+            </ul>
+            <ul class="tags">
+              <li>HTML5</li><li>CSS3</li><li>JavaScript</li><li>GSAP</li><li>ScrollTrigger</li>
+            </ul>
+            <div class="project-actions">
+              <a href="https://prochemarket.com" target="_blank" rel="noopener" class="btn btn-primary"><span data-i18n="pm.visit">Voir la boutique</span> <i class="bi bi-arrow-up-right" aria-hidden="true"></i></a>
+            </div>
+          </div>
+
+          <div class="pm-mobile">
+            <div class="pm-mobile-text">
+              <p class="pm-sub" data-i18n="pm.c.mobile">Sur mobile</p>
+              <p data-i18n="pm.mobile.p">Même parcours à 390 px : le panier garde une barre « Commander » fixe en bas de l'écran, et la promesse 24 h / 72 h reste lisible dès l'accueil.</p>
+            </div>
+            <div class="pm-phones">
+              <!-- Le cadre bleu montre, écran après écran, ce que dit le texte (position en % de l'écran) -->
+              <figure class="pm-phone">
+                <div class="pj-shot"><img src="assets/img/projects/prochemarket/mobile/accueil.webp" width="608" height="1021" alt="Proche Market sur mobile : accueil" loading="lazy"><span class="pj-hl" style="--x: 3%; --y: 66.5%; --w: 80%; --h: 9.5%" aria-hidden="true"></span></div>
+                <figcaption class="pj-cap" data-i18n="pm.cap.m1">La promesse, dès l'accueil</figcaption>
+              </figure>
+              <figure class="pm-phone">
+                <div class="pj-shot"><img src="assets/img/projects/prochemarket/mobile/panier.webp" width="608" height="1021" alt="Proche Market sur mobile : panier avec bouton Commander fixe" loading="lazy"><span class="pj-hl" style="--x: 2%; --y: 90%; --w: 96%; --h: 9%" aria-hidden="true"></span></div>
+                <figcaption class="pj-cap" data-i18n="pm.cap.m2">« Commander » reste fixé en bas</figcaption>
+              </figure>
+              <figure class="pm-phone">
+                <div class="pj-shot"><img src="assets/img/projects/prochemarket/mobile/promesse.webp" width="608" height="1058" alt="Proche Market sur mobile : promesse 24 h à Bamako, 72 h partout ailleurs" loading="lazy"><span class="pj-hl" style="--x: 2.5%; --y: 50.5%; --w: 93%; --h: 12.5%" aria-hidden="true"></span></div>
+                <figcaption class="pj-cap" data-i18n="pm.cap.m3">Les délais, en gros chiffres</figcaption>
+              </figure>
+            </div>
+          </div>
+
+          <p class="pj-note" data-i18n="pm.note">Boutique en lancement : catalogue volontairement restreint, aucun chiffre de vente avancé. Les délais sont les engagements publiés sur le site.</p>
+        </article>
+
+        <!-- Aussi livré -->
+        <div class="also reveal">
+          <h3 class="sub-title" data-i18n="pf.also">Aussi livré</h3>
+          <ul class="also-list">
+            <li class="also-item">
+              <!-- Scène GesCabinet, construite comme celle de Smart Agro : le mobile du patient et le site de la clinique,
+                   reliés par la même API. 1) un rendez-vous pris sur l'app arrive dans l'agenda ; 2) le patient écrit au support
+                   médical, la clinique répond depuis le site. Données fictives. -->
+              <div class="project-media scene scene--gc" id="scene-gc">
+                <p class="visually-hidden" data-i18n="gc.desc">Démonstration animée : sur l'application mobile, Mariam prend rendez-vous à 10 h 30 chez Dr Coulibaly ; la requête passe par l'API Spring Boot et le rendez-vous apparaît dans l'agenda du site de la clinique. Mariam écrit ensuite au support médical qu'elle a de la fièvre ; le message arrive sur le site, le support répond, et la réponse revient sur son téléphone.</p>
+                <div class="scene-stage" aria-hidden="true">
+                  <div class="sa-api"><b>API Spring Boot</b><em>Spring Security · JWT</em></div>
+                  <svg class="sa-links" viewBox="0 0 100 100" preserveAspectRatio="none">
+                    <path class="sa-base" d="M19 27 C19 18 40 22 47 12" />
+                    <path class="sa-base" d="M53 12 C60 22 72 18 72 25" />
+                    <path class="sa-pulse sa-pulse--up" d="M19 27 C19 18 40 22 47 12" pathLength="1" />
+                    <path class="sa-pulse sa-pulse--down" d="M53 12 C60 22 72 18 72 25" pathLength="1" />
+                  </svg>
+                  <p class="sa-tag sa-tag--m" data-i18n="gc.tag.m">Mobile</p>
+                  <p class="sa-tag sa-tag--w">Angular</p>
+
+                  <!-- Le téléphone du patient -->
+                  <div class="gc-phone">
+                    <p class="gc-bar"><span class="gc-logo"><b>GC</b>Ges-Cabinet</span><span class="gc-me">M</span></p>
+                    <div class="gc-views">
+                      <div class="gc-view gc-view--book">
+                        <p class="gc-hello"><small data-i18n="gc.hello">Bonjour</small> <b>Mariam</b></p>
+                        <div class="gc-card"><span class="gc-card-av">C</span><span><b>Dr Coulibaly</b><small data-i18n="gc.spec">Généraliste</small></span></div>
+                        <div class="gc-days"><span><small>Lun</small><b>17</b></span><span class="is-on"><small>Mar</small><b>18</b></span><span><small>Mer</small><b>19</b></span><span><small>Jeu</small><b>20</b></span><span><small>Ven</small><b>21</b></span></div>
+                        <div class="gc-slots"><span class="">09:30</span><span class="is-off">10:00</span><span class="gc-pick">10:30</span><span class="">11:00</span><span class="is-off">11:30</span><span class="">14:00</span></div>
+                        <p class="gc-cta"><span data-i18n="gc.confirm">Confirmer</span><span class="gc-cta-time">&nbsp;· 10:30</span></p>
+                        <p class="gc-toast"><i class="bi bi-check-circle-fill"></i><span data-i18n="gc.okshort">Rendez-vous confirmé · 10:30</span></p>
+                      </div>
+                      <div class="gc-view gc-view--chat">
+                        <p class="gc-chat-head"><i class="bi bi-chevron-left"></i><span class="gc-sup-av"><i class="bi bi-heart-pulse"></i></span><span><b data-i18n="gc.support">Support médical</b><small><span class="gc-online"></span> <span data-i18n="gc.online">en ligne</span></small></span></p>
+                        <div class="gc-chat-body">
+                          <p class="gc-day" data-i18n="gc.todaychat">Aujourd'hui</p>
+                          <p class="gc-bubble gc-bubble--me gc-q-phone" data-i18n="gc.q">J'ai de la fièvre depuis hier. Que faire en attendant mon rendez-vous ?</p>
+                          <p class="gc-bubble gc-bubble--sup gc-a-phone" data-i18n="gc.a">Buvez beaucoup d'eau et reposez-vous. Si la fièvre dépasse 39 °C, appelez-nous.</p>
+                        </div>
+                        <p class="gc-input"><span data-i18n="gc.input">Écrivez votre message…</span><i class="bi bi-send-fill"></i></p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Le site de la clinique (Angular) -->
+                  <div class="gc-web">
+                    <p class="gc-chrome"><i></i><i></i><i></i><span>gescabinet · clinique</span></p>
+                    <div class="gc-web-body">
+                      <nav class="gc-rail"><b>GC</b><i class="bi bi-calendar3 is-on"></i><span class="gc-rail-msg"><i class="bi bi-chat-dots"></i><em class="gc-badge">1</em></span><i class="bi bi-people"></i></nav>
+                      <div class="gc-agenda">
+                        <p class="gc-agenda-h"><span><b data-i18n="gc.agenda">Agenda</b><small>Dr Coulibaly</small></span><span class="gc-count"><b data-gc="count">13</b> <span data-i18n="gc.rdv">rdv</span></span></p>
+                        <ol class="gc-rows"><li class="gc-row is-done"><time>09:00</time><b>Mme Keïta</b><em data-i18n="gc.s.done">Terminé</em></li><li class="gc-row is-arrived"><time>09:30</time><b>M. Diarra</b><em data-i18n="gc.s.arrived">Arrivé</em></li><li class="gc-row is-confirmed"><time>10:00</time><b>Mme Bah</b><em data-i18n="gc.s.confirmed">Confirmé</em></li><li class="gc-row is-confirmed gc-row-new"><time>10:30</time><b>Mariam Sangaré</b><em data-i18n="gc.s.app">Via l'app</em></li><li class="gc-row is-confirmed"><time>11:00</time><b>M. Koné</b><em data-i18n="gc.s.confirmed">Confirmé</em></li></ol>
+                      </div>
+                      <div class="gc-msgs">
+                        <p class="gc-msgs-h"><b data-i18n="gc.support">Support médical</b><small>Mariam Sangaré</small></p>
+                        <p class="gc-bubble gc-bubble--pat gc-q-web" data-i18n="gc.q">J'ai de la fièvre depuis hier. Que faire en attendant mon rendez-vous ?</p>
+                        <p class="gc-bubble gc-bubble--typing"><i></i><i></i><i></i></p>
+                        <p class="gc-bubble gc-bubble--agent gc-a-web" data-i18n="gc.a">Buvez beaucoup d'eau et reposez-vous. Si la fièvre dépasse 39 °C, appelez-nous.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="scene-bar">
+                  <p class="scene-note" data-i18n="scene.note">Démonstration · données fictives</p>
+                  <button type="button" class="scene-replay" aria-label="Rejouer la démonstration" data-i18n-aria="scene.replay"><i class="bi bi-arrow-counterclockwise" aria-hidden="true"></i></button>
+                </div>
+              </div>
+              <div class="also-text">
+                <p class="also-sector" data-i18n="pf.ges.sector">Santé</p>
+                <h4>GesCabinet</h4>
+                <p data-i18n="pf.ges.line">Projet de fin de formation Orange Digital Kalanso, puis adapté aux besoins d'une clinique qui l'utilise aujourd'hui (nom confidentiel). Les patients prennent rendez-vous depuis leur mobile et écrivent au support médical ; la clinique gère son agenda et répond depuis le site.</p>
+                <p class="card-stack">Angular · Spring Boot · Spring Security · MySQL</p>
+              </div>
+            </li>
+          </ul>
         </div>
 
         <p class="refs-note"><i class="bi bi-person-check" aria-hidden="true"></i> <span data-i18n="refs.note">Références professionnelles disponibles sur demande.</span></p>
-      </div>
-    </section>
-
-    <!-- ======= Standards ======= -->
-    <section id="standards" class="section">
-      <div class="container">
-        <div class="nope-inner">
-          <header class="sec-head">
-            <h2><span class="sec-num" aria-hidden="true">03</span><span data-i18n="nope.label">Standards · Ce que je refuse de faire</span></h2>
-          </header>
-          <div class="nope-grid reveal">
-            <div class="nope-item" style="--i: 0">
-              <div class="diff">
-                <p class="diff-line diff-del"><span class="diff-sign" aria-hidden="true">-</span><span class="diff-text"><span class="visually-hidden" data-i18n="nope.sr.del">Refusé :</span> <span data-i18n="nope.t1">Logique métier dans les controllers</span></span></p>
-                <p class="diff-line diff-add"><span class="diff-sign" aria-hidden="true">+</span><span class="diff-text"><span class="visually-hidden" data-i18n="nope.sr.add">À la place :</span> <span data-i18n="nope.p1">Controller → Service : il reçoit, il délègue</span></span></p>
-              </div>
-              <p class="nope-desc" data-i18n="nope.d1">Les controllers reçoivent et délèguent — la logique appartient aux services. Un controller gonflé est le premier signe d'une architecture non maintenable.</p>
-            </div>
-            <div class="nope-item" style="--i: 1">
-              <div class="diff">
-                <p class="diff-line diff-del"><span class="diff-sign" aria-hidden="true">-</span><span class="diff-text"><span class="visually-hidden" data-i18n="nope.sr.del">Refusé :</span> <span data-i18n="nope.t2">Déploiement sans pipeline CI/CD</span></span></p>
-                <p class="diff-line diff-add"><span class="diff-sign" aria-hidden="true">+</span><span class="diff-text"><span class="visually-hidden" data-i18n="nope.sr.add">À la place :</span> <span data-i18n="nope.p2">Branche de test → validation → GitLab CI → production</span></span></p>
-              </div>
-              <p class="nope-desc" data-i18n="nope.d2">Chaque release passe d'abord sur la branche de test — l'équipe valide, puis GitLab CI prend le relais automatiquement vers la production : build, Docker, déploiement.</p>
-            </div>
-            <div class="nope-item" style="--i: 2">
-              <div class="diff">
-                <p class="diff-line diff-del"><span class="diff-sign" aria-hidden="true">-</span><span class="diff-text"><span class="visually-hidden" data-i18n="nope.sr.del">Refusé :</span> <span data-i18n="nope.t3">Credentials en dur dans le code</span></span></p>
-                <p class="diff-line diff-add"><span class="diff-sign" aria-hidden="true">+</span><span class="diff-text"><span class="visually-hidden" data-i18n="nope.sr.add">À la place :</span> <span data-i18n="nope.p3">Secrets dans l'environnement ou un vault</span></span></p>
-              </div>
-              <p class="nope-desc" data-i18n="nope.d3">Mots de passe, clés API, secrets — ils vivent dans les variables d'environnement ou un vault, jamais dans le dépôt Git.</p>
-            </div>
-            <div class="nope-item" style="--i: 3">
-              <div class="diff">
-                <p class="diff-line diff-del"><span class="diff-sign" aria-hidden="true">-</span><span class="diff-text"><span class="visually-hidden" data-i18n="nope.sr.del">Refusé :</span> <span data-i18n="nope.t4">Multi-tenant sans isolation stricte</span></span></p>
-                <p class="diff-line diff-add"><span class="diff-sign" aria-hidden="true">+</span><span class="diff-text"><span class="visually-hidden" data-i18n="nope.sr.add">À la place :</span> <span data-i18n="nope.p4">Filtre <code>tenant_id</code> dans Spring Security, à chaque requête</span></span></p>
-              </div>
-              <p class="nope-desc" data-i18n="nope.d4">Chaque requête filtrée par <code>tenant_id</code> au niveau Spring Security — pas de confiance côté client, pas de fuite cross-tenant possible.</p>
-            </div>
-            <div class="nope-item" style="--i: 4">
-              <div class="diff">
-                <p class="diff-line diff-del"><span class="diff-sign" aria-hidden="true">-</span><span class="diff-text"><span class="visually-hidden" data-i18n="nope.sr.del">Refusé :</span> <span data-i18n="nope.t5">Livrer sans avoir testé le cas nominal</span></span></p>
-                <p class="diff-line diff-add"><span class="diff-sign" aria-hidden="true">+</span><span class="diff-text"><span class="visually-hidden" data-i18n="nope.sr.add">À la place :</span> <span data-i18n="nope.p5">Golden path couvert avant chaque mise en production</span></span></p>
-              </div>
-              <p class="nope-desc" data-i18n="nope.d5">Avant toute mise en production, le golden path est couvert — que ce soit par tests unitaires, tests d'intégration ou validation manuelle documentée.</p>
-            </div>
-            <div class="nope-item" style="--i: 5">
-              <div class="diff">
-                <p class="diff-line diff-del"><span class="diff-sign" aria-hidden="true">-</span><span class="diff-text"><span class="visually-hidden" data-i18n="nope.sr.del">Refusé :</span> <span data-i18n="nope.t6">Session serveur pour une API REST</span></span></p>
-                <p class="diff-line diff-add"><span class="diff-sign" aria-hidden="true">+</span><span class="diff-text"><span class="visually-hidden" data-i18n="nope.sr.add">À la place :</span> <span data-i18n="nope.p6">JWT stateless, aucun état serveur</span></span></p>
-              </div>
-              <p class="nope-desc" data-i18n="nope.d6">Une API REST est stateless par définition. JWT embarquant les claims nécessaires — aucun état serveur, scalabilité horizontale préservée.</p>
-            </div>
-          </div>
-        </div>
       </div>
     </section>
 
@@ -585,7 +693,7 @@
     <section id="resume" class="section section--alt">
       <div class="container">
         <header class="sec-head">
-          <h2><span class="sec-num" aria-hidden="true">04</span><span data-i18n="sec.resume">Parcours</span></h2>
+          <h2><span class="sec-num" aria-hidden="true">03</span><span data-i18n="sec.resume">Parcours</span></h2>
           <p data-i18n="sec.resume.sub">Expériences professionnelles, puis formation.</p>
         </header>
 
@@ -602,13 +710,13 @@
                   <li data-i18n="exp.li.xpert2">Conception de l'architecture applicative des solutions internes et clients.</li>
                   <li data-i18n="exp.li.xpert3">Intégration Docker et GitLab CI dans les pipelines de développement et déploiement.</li>
                   <li data-i18n="exp.li.xpert4">Accompagnement technique de l'équipe et rédaction de la documentation.</li>
-                  <li data-i18n="exp.li.xpert5"><strong>Tchakeda :</strong> plateforme SaaS multi-tenant (214+ entreprises, 381+ utilisateurs).</li>
+                  <li data-i18n="exp.li.xpert5"><strong>Tchakeda :</strong> plateforme SaaS multi-tenant (300+ entreprises, 500+ utilisateurs).</li>
                   <li data-i18n="exp.li.xpert6"><strong>Smart Agro :</strong> plateforme numérique agricole (réseau social agri-coach) — en partenariat avec le PNUD et TADAMON ACCELERATOR.</li>
                 </ul>
               </li>
               <li class="tl-item">
                 <p class="tl-date" data-i18n="exp.h5.atc">Décembre 2022 – Présent · à distance depuis 2024</p>
-                <h4 data-i18n="exp.h4.atc">Webmaster — Groupe ATC</h4>
+                <h4 data-i18n="exp.h4.atc">Développeur web · refonte du site — Groupe ATC</h4>
                 <p class="tl-org">Groupe ATC — Bamako, Mali</p>
                 <p data-i18n="exp.atc.desc">Leader dans les services miniers et industriels, 7 filiales à travers le monde.</p>
                 <ul>
@@ -671,11 +779,6 @@
                 <h4 data-i18n="edu.h4.licence">Licence Professionnelle en Informatique de Gestion</h4>
                 <p class="tl-org">Institut Privé IP-SMART — Bamako, Mali</p>
               </li>
-              <li class="tl-item">
-                <p class="tl-date">2015 – 2016</p>
-                <h4 data-i18n="edu.h4.bac">Baccalauréat Malien</h4>
-                <p class="tl-org">Lycée Moderne de Mopti</p>
-              </li>
             </ol>
           </div>
         </div>
@@ -686,7 +789,7 @@
     <section id="testimonials" class="section">
       <div class="container">
         <header class="sec-head">
-          <h2><span class="sec-num" aria-hidden="true">05</span><span data-i18n="sec.testimonials">Témoignages</span></h2>
+          <h2><span class="sec-num" aria-hidden="true">04</span><span data-i18n="sec.testimonials">Témoignages</span></h2>
           <p data-i18n="sec.testimonials.sub">Ce que mes collaborateurs disent de mon travail.</p>
         </header>
 
@@ -694,7 +797,7 @@
           <figure class="quote">
             <blockquote data-i18n="test.p1">M. Fofana est un développeur vraiment de taille. Rigoureux, ponctualité et innovation sont entre autres les qualités que j'ai remarquées chez Hady.</blockquote>
             <figcaption>
-              <img src="assets/img/testimonials/testimonials-1.png" alt="" width="44" height="44" loading="lazy">
+              <img src="assets/img/testimonials/testimonials-1.webp" alt="" width="44" height="44" loading="lazy">
               <span><strong>Seydina Oumar Diarra</strong><span data-i18n="test.role1">Ingénieur Développement Web &amp; Mobile — Orange Mali</span></span>
             </figcaption>
           </figure>
@@ -720,7 +823,7 @@
     <section id="contact" class="section">
       <div class="container">
         <header class="sec-head">
-          <h2><span class="sec-num" aria-hidden="true">06</span><span data-i18n="sec.contact">Contact</span></h2>
+          <h2><span class="sec-num" aria-hidden="true">05</span><span data-i18n="sec.contact">Contact</span></h2>
           <p data-i18n="sec.contact.sub">Vous construisez un produit pour l'économie réelle ? Parlons-en — je réponds sous 24 h.</p>
         </header>
 
@@ -763,20 +866,22 @@
 
 
         <div class="contact-grid">
+          <div class="contact-main">
+            <p class="contact-label" data-i18n="contact.direct">Le plus direct : un e-mail ou un message WhatsApp.</p>
+            <p class="contact-mail">
+              <a href="mailto:hadyfofana72@gmail.com">hadyfofana72@gmail.com</a>
+              <button type="button" class="copy-email-btn" id="copy-email-btn" aria-label="Copier l'adresse email" data-i18n-aria="copy.label">
+                <i class="bi bi-clipboard" id="copy-email-icon" aria-hidden="true"></i>
+              </button>
+              <span class="copy-status" id="copy-status" role="status"></span>
+            </p>
+            <div class="contact-ctas">
+              <a href="mailto:hadyfofana72@gmail.com" class="btn btn-primary contact-cta"><span data-i18n="contact.write">Écrire un e-mail</span> <i class="bi bi-arrow-right" aria-hidden="true"></i></a>
+              <a href="https://wa.me/22372303157?text=Bonjour%20Hady%2C%20j%27ai%20vu%20votre%20portfolio.%20Mon%20projet%20%3A%20" class="btn btn-outline contact-cta contact-wa" target="_blank" rel="noopener" data-wa><i class="bi bi-whatsapp" aria-hidden="true"></i> <span data-i18n="contact.wa">Écrire sur WhatsApp</span></a>
+            </div>
+          </div>
+
           <ul class="contact-info">
-            <li>
-              <i class="bi bi-envelope" aria-hidden="true"></i>
-              <div>
-                <p class="contact-label">Email</p>
-                <p>
-                  <a href="mailto:hadyfofana72@gmail.com">hadyfofana72@gmail.com</a>
-                  <button type="button" class="copy-email-btn" id="copy-email-btn" aria-label="Copier l'adresse email">
-                    <i class="bi bi-clipboard" id="copy-email-icon" aria-hidden="true"></i>
-                  </button>
-                  <span class="copy-status" id="copy-status" role="status"></span>
-                </p>
-              </div>
-            </li>
             <li>
               <i class="bi bi-telephone" aria-hidden="true"></i>
               <div>
@@ -799,43 +904,6 @@
               </div>
             </li>
           </ul>
-
-          <form id="contact-form" class="contact-form" novalidate>
-            <div class="cf-row">
-              <div class="cf-group">
-                <label for="cf-name" data-i18n="form.label.name">Nom</label>
-                <input id="cf-name" type="text" name="from_name" class="cf-input" placeholder="Votre nom" data-i18n-ph="form.name" autocomplete="name" required>
-                <p class="cf-error" id="cf-name-err"></p>
-              </div>
-              <div class="cf-group">
-                <label for="cf-email" data-i18n="form.label.email">Email</label>
-                <input id="cf-email" type="email" name="reply_to" class="cf-input" placeholder="Votre email" data-i18n-ph="form.email" autocomplete="email" required>
-                <p class="cf-error" id="cf-email-err"></p>
-              </div>
-            </div>
-            <div class="cf-group">
-              <label for="cf-subject" data-i18n="form.label.subject">Sujet</label>
-              <input id="cf-subject" type="text" name="subject" class="cf-input" placeholder="Sujet" data-i18n-ph="form.subject" required>
-              <p class="cf-error" id="cf-subject-err"></p>
-            </div>
-            <div class="cf-group">
-              <label for="cf-message" data-i18n="form.label.message">Message</label>
-              <textarea id="cf-message" name="message" class="cf-input cf-textarea" rows="5" placeholder="Votre message..." data-i18n-ph="form.message" required></textarea>
-              <p class="cf-error" id="cf-message-err"></p>
-            </div>
-            <button type="submit" class="btn btn-primary cf-submit" id="cf-submit">
-              <span class="cf-submit-label" data-i18n="form.send">Envoyer le message</span>
-              <i class="bi bi-arrow-right" aria-hidden="true"></i>
-            </button>
-            <ol class="cf-flow" id="cf-flow" aria-hidden="true">
-              <li class="cf-node" data-step="0" data-i18n="flow.you">Vous</li>
-              <li class="cf-link" data-step="1"></li>
-              <li class="cf-node" data-step="1">POST /contact</li>
-              <li class="cf-link" data-step="2"></li>
-              <li class="cf-node" data-step="2">Hady</li>
-            </ol>
-            <p id="cf-feedback" class="cf-feedback" role="status" aria-live="polite"></p>
-          </form>
         </div>
       </div>
     </section>
@@ -846,8 +914,8 @@
   <footer class="site-footer">
     <div class="container footer-inner">
       <div>
-        <p>&copy; 2026 <strong>Hady Fofana</strong> — <span data-i18n="footer.role">Développeur Full Stack · Bamako, Mali</span></p>
-        <p class="footer-build" data-i18n="footer.build">Cette page : 56 Ko de code · 0 framework · HTML, CSS et JS écrits à la main</p>
+        <p>&copy; 2026 <strong>Hady Fofana</strong> — <span data-i18n="footer.role">Responsable Développement · Bamako, Mali</span></p>
+        <p class="footer-build" data-i18n="footer.build">Cette page : HTML, CSS et JavaScript écrits à la main · animations GSAP</p>
       </div>
       <ul class="footer-links">
         <li><a href="https://github.com/XpertProDev" target="_blank" rel="noopener" aria-label="GitHub"><i class="bi bi-github" aria-hidden="true"></i></a></li>
@@ -869,13 +937,13 @@
         <p class="cs-lead" data-i18n="cs.tchakeda.lead">Plateforme SaaS multi-tenant de gestion d'entreprise — chaque entreprise cliente crée et gère ses propres utilisateurs, isolés des autres tenants.</p>
 
         <div class="cs-screenshots">
-          <img src="assets/img/portfolio/tchakeda.webp" alt="Tchakeda — vue principale" loading="lazy">
-          <img src="assets/img/portfolio/tchakeda-2.webp" alt="Tchakeda — vue secondaire" loading="lazy">
+          <img src="assets/img/projects/tchakeda/compta-journal.webp" srcset="assets/img/projects/tchakeda/compta-journal-1200.webp 1200w, assets/img/projects/tchakeda/compta-journal.webp 2000w" sizes="(max-width: 899px) calc(100vw - 32px), 620px" alt="Tchakeda : journal comptable (entrées et sorties)" loading="lazy">
+          <img src="assets/img/projects/tchakeda/ventes.webp" srcset="assets/img/projects/tchakeda/ventes-1200.webp 1200w, assets/img/projects/tchakeda/ventes.webp 2000w" sizes="(max-width: 899px) calc(100vw - 32px), 620px" alt="Tchakeda : liste des ventes et factures" loading="lazy">
         </div>
 
         <dl class="cs-stats">
-          <div class="cs-stat"><dt class="cs-stat-l" data-i18n="cs.tchakeda.stat1">Entreprises clientes</dt><dd class="cs-stat-n">214<span class="cs-stat-plus">+</span></dd></div>
-          <div class="cs-stat"><dt class="cs-stat-l" data-i18n="cs.tchakeda.stat2">Utilisateurs (tous tenants)</dt><dd class="cs-stat-n">381<span class="cs-stat-plus">+</span></dd></div>
+          <div class="cs-stat"><dt class="cs-stat-l" data-i18n="cs.tchakeda.stat1">Entreprises inscrites</dt><dd class="cs-stat-n">300<span class="cs-stat-plus">+</span></dd></div>
+          <div class="cs-stat"><dt class="cs-stat-l" data-i18n="cs.tchakeda.stat2">Utilisateurs (tous tenants)</dt><dd class="cs-stat-n">500<span class="cs-stat-plus">+</span></dd></div>
           <div class="cs-stat"><dt class="cs-stat-l" data-i18n="cs.tchakeda.stat4">Instance pour tous</dt><dd class="cs-stat-n">1</dd></div>
           <div class="cs-stat"><dt class="cs-stat-l" data-i18n="cs.tchakeda.stat3">Cache des permissions</dt><dd class="cs-stat-n">15<span class="cs-stat-plus"> min</span></dd></div>
         </dl>
@@ -901,15 +969,15 @@
           <p class="cs-section-label" data-i18n="cs.label.decisions">Décisions clés</p>
           <div class="cs-dec">
             <p class="cs-dec-title" data-i18n="cs.tchakeda.dec1.title">Shared schema plutôt que schema-per-tenant</p>
-            <p class="cs-text" data-i18n="cs.tchakeda.dec1.text">Un schéma par client est plus isolé mais ingérable à l'échelle — 214+ bases à migrer et à maintenir séparément. Avec le shared schema et <code>tenant_id</code>, une seule migration couvre tous les clients instantanément.</p>
+            <p class="cs-text" data-i18n="cs.tchakeda.dec1.text">Un schéma par client est plus isolé mais ingérable à l'échelle — 300+ bases à migrer et à maintenir séparément. Avec le shared schema et <code>tenant_id</code>, une seule migration couvre tous les clients instantanément.</p>
           </div>
           <div class="cs-dec">
-            <p class="cs-dec-title" data-i18n="cs.tchakeda.dec2.title">Redis pour les permissions, pas juste les sessions</p>
-            <p class="cs-text" data-i18n="cs.tchakeda.dec2.text">Chaque requête vérifiait les droits en base (rôles, modules actifs par tenant). Cache Redis à 15 min : la charge MySQL aux heures de pointe baisse significativement sans compromettre la sécurité.</p>
+            <p class="cs-dec-title" data-i18n="cs.tchakeda.dec2.title">Redis pour la configuration de chaque entreprise</p>
+            <p class="cs-text" data-i18n="cs.tchakeda.dec2.text">Le JWT dit qui est l'utilisateur ; il ne dit pas quels modules son entreprise a activés, et cette configuration change côté entreprise. Elle était relue en base à chaque requête : elle est désormais mise en cache Redis par tenant pendant 15 min, ce qui retire cette lecture de la plupart des requêtes.</p>
           </div>
           <div class="cs-dec">
             <p class="cs-dec-title" data-i18n="cs.tchakeda.dec3.title">JWT embarquant tenant_id et rôles utilisateur</p>
-            <p class="cs-text" data-i18n="cs.tchakeda.dec3.text">À la connexion, le JWT de chaque utilisateur embarque son <code>tenant_id</code> et ses rôles. L'API identifie instantanément à quelle entreprise appartient la requête — auth stateless, zéro appel DB, isolation garantie à chaque endpoint.</p>
+            <p class="cs-text" data-i18n="cs.tchakeda.dec3.text">À la connexion, le JWT de chaque utilisateur embarque son <code>tenant_id</code> et ses rôles. L'API sait à quelle entreprise appartient la requête sans consulter la base pour l'authentification, et le filtre <code>tenant_id</code> s'applique à chaque endpoint.</p>
           </div>
         </div>
 
@@ -927,10 +995,6 @@
         <p class="cs-eyebrow">Case Study · Groupe Xpert Pro</p>
         <h2 class="cs-title" id="cs-agro-title">Smart Agro Coach</h2>
         <p class="cs-lead" data-i18n="cs.agro.lead">Plateforme numérique agricole web + mobile — réseau social entre agriculteurs et coachs, alertes climatiques en temps réel. Soutenu par le PNUD et le programme TADAMON Food Security.</p>
-
-        <div class="cs-screenshots cs-screenshots--single">
-          <img src="assets/img/portfolio/smart-agro.webp" alt="Smart Agro Coach — interface principale" loading="lazy">
-        </div>
 
         <dl class="cs-stats">
           <div class="cs-stat"><dt class="cs-stat-l" data-i18n="cs.agro.stat1">Partenaires institutionnels</dt><dd class="cs-stat-n">2</dd></div>
@@ -978,7 +1042,11 @@
     </div>
   </div>
 
+  <script src="assets/vendor/gsap/gsap.min.js"></script>
+  <script src="assets/vendor/gsap/ScrollTrigger.min.js"></script>
+  <script src="assets/vendor/gsap/SplitText.min.js"></script>
   <script src="assets/js/i18n.js"></script>
+  <script src="assets/js/motion.js"></script>
   <script src="assets/js/main.js"></script>
 
 </body>

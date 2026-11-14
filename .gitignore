@@ -1,0 +1,30 @@
+# Captures brutes (barre du navigateur visible, données non masquées) : ne jamais publier.
+assets/imgProjet/
+.DS_Store
+**/.DS_Store
+
+# Notes de travail et outillage : jamais publiés sur GitHub Pages
+*.md
+.agents/
+.claude/
+skills-lock.json
+
+# Anciennes versions du CV : seule la version liée sur le site est publiée
+cv/*
+!cv/CV_Hady_Fofana_Developpeur_Logiciel_Full_Stack.pdf
+
+# Anciens fichiers du site (non utilisés)
+assets/SCSS/
+assets/img/*.JPG
+assets/img/*.JPEG
+!assets/img/favicon.JPEG
+assets/img/*.PNG
+assets/img/*.jpeg
+assets/img/fof1.png
+assets/img/favicon1.png
+assets/img/font*.jpg
+assets/img/portfolio/*
+
+
+# Modèles internes (image de partage, etc.)
+tools/

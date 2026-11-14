@@ -28,6 +28,10 @@
       var v = dict[el.getAttribute('data-i18n-ph')];
       if (v !== undefined) el.placeholder = v;
     });
+    $$('[data-wa]').forEach(function (el) {
+      var msg = dict['contact.wa.text'];
+      if (msg) el.href = 'https://wa.me/22372303157?text=' + encodeURIComponent(msg);
+    });
     $$('[data-i18n-aria]').forEach(function (el) {
       var v = dict[el.getAttribute('data-i18n-aria')];
       if (v !== undefined) el.setAttribute('aria-label', v);
@@ -38,6 +42,7 @@
       btn.setAttribute('aria-pressed', on ? 'true' : 'false');
     });
     try { localStorage.setItem('lang', next); } catch (e) {}
+    doc.dispatchEvent(new CustomEvent('langchange'));
   }
 
   var saved = null;
@@ -120,7 +125,10 @@
     requestAnimationFrame(step);
   }
 
-  if ('IntersectionObserver' in window) {
+  // Quand motion.js (GSAP) est actif, c'est lui qui révèle les blocs ; il prévient ici.
+  doc.addEventListener('reveal-in', function (e) { $$('[data-count]', e.target).forEach(countUp); });
+
+  if (!window.__motion && 'IntersectionObserver' in window) {
     var revealer = new IntersectionObserver(function (entries, obs) {
       entries.forEach(function (entry) {
         if (!entry.isIntersecting) return;
@@ -130,7 +138,7 @@
       });
     }, { threshold: 0.15, rootMargin: '0px 0px -8% 0px' });
     $$('.reveal').forEach(function (el) { revealer.observe(el); });
-  } else {
+  } else if (!window.__motion) {
     $$('.reveal').forEach(function (el) { el.classList.add('is-in'); });
   }
 
@@ -205,143 +213,6 @@
   }
 
   /* ---------------------------------------------------------------
-     Formulaire de contact
-     EmailJS est utilisé si les clés sont renseignées ; sinon le
-     message est ouvert dans la messagerie du visiteur (mailto).
-     --------------------------------------------------------------- */
-  var EMAILJS = {
-    publicKey: 'YOUR_PUBLIC_KEY',
-    serviceId: 'YOUR_SERVICE_ID',
-    templateId: 'YOUR_TEMPLATE_ID'
-  };
-  var emailjsReady = EMAILJS.publicKey.indexOf('YOUR_') !== 0;
-  var CONTACT_EMAIL = 'hadyfofana72@gmail.com';
-
-  var form = $('#contact-form');
-  if (form) {
-    var submit = $('#cf-submit');
-    var feedback = $('#cf-feedback');
-    var EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-    function setError(input, key) {
-      var err = doc.getElementById(input.id + '-err');
-      if (key) {
-        input.setAttribute('aria-invalid', 'true');
-        input.setAttribute('aria-describedby', input.id + '-err');
-        if (err) err.textContent = t(key);
-      } else {
-        input.removeAttribute('aria-invalid');
-        input.removeAttribute('aria-describedby');
-        if (err) err.textContent = '';
-      }
-    }
-
-    function validate() {
-      var firstInvalid = null;
-      $$('.cf-input', form).forEach(function (input) {
-        var v = input.value.trim();
-        var key = null;
-        if (!v) key = 'form.invalid.required';
-        else if (input.type === 'email' && !EMAIL_RE.test(v)) key = 'form.invalid.email';
-        setError(input, key);
-        if (key && !firstInvalid) firstInvalid = input;
-      });
-      if (firstInvalid) firstInvalid.focus();
-      return !firstInvalid;
-    }
-
-    function setFeedback(kind, key) {
-      feedback.className = 'cf-feedback' + (kind ? ' is-' + kind : '');
-      feedback.innerHTML = key ? t(key) : '';
-    }
-
-    function setBusy(busy) {
-      submit.disabled = busy;
-      submit.setAttribute('aria-busy', busy ? 'true' : 'false');
-      $('.cf-submit-label', submit).textContent = busy ? t('form.sending') : t('form.send');
-    }
-
-    $$('.cf-input', form).forEach(function (input) {
-      input.addEventListener('input', function () {
-        if (input.getAttribute('aria-invalid') === 'true') setError(input, null);
-      });
-    });
-
-    function loadEmailJS() {
-      if (window.emailjs) return Promise.resolve(window.emailjs);
-      return new Promise(function (resolve, reject) {
-        var s = doc.createElement('script');
-        s.src = 'https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js';
-        s.onload = function () { window.emailjs.init({ publicKey: EMAILJS.publicKey }); resolve(window.emailjs); };
-        s.onerror = reject;
-        doc.head.appendChild(s);
-      });
-    }
-
-    /* Le trajet reprend celui de la démo : cette fois, c'est la requête du visiteur.
-       Le vert et le « 200 OK » n'apparaissent que si l'envoi a réellement abouti. */
-    var flow = $('#cf-flow');
-    var flowParts = flow ? $$('.cf-node, .cf-link', flow) : [];
-    var flowTimers = [];
-    var flowMiddle = flow ? $('.cf-node[data-step="1"]', flow) : null;
-    if (flowMiddle && !emailjsReady) flowMiddle.textContent = 'mailto:';
-
-    function flowReset() {
-      flowTimers.forEach(clearTimeout);
-      flowTimers = [];
-      flow.classList.remove('is-done');
-      flowParts.forEach(function (el) { el.classList.remove('is-on', 'is-error'); });
-    }
-    function flowStep(n) {
-      flowParts.forEach(function (el) { if (el.getAttribute('data-step') === String(n)) el.classList.add('is-on'); });
-    }
-    function flowTo(n) {
-      if (reduceMotion.matches) { for (var i = 0; i <= n; i++) flowStep(i); return; }
-      flowStep(0);
-      for (var j = 1; j <= n; j++) {
-        (function (k) { flowTimers.push(setTimeout(function () { flowStep(k); }, k * 260)); })(j);
-      }
-    }
-    function wait(ms) { return new Promise(function (r) { setTimeout(r, reduceMotion.matches ? 0 : ms); }); }
-
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
-      setFeedback(null, null);
-      if (!validate()) return;
-      if (flow) flowReset();
-
-      if (!emailjsReady) {
-        var data = new FormData(form);
-        var body = data.get('message') + '\n\n— ' + data.get('from_name') + ' <' + data.get('reply_to') + '>';
-        if (flow) flowTo(2);
-        setFeedback('info', 'form.mailto');
-        window.location.href = 'mailto:' + CONTACT_EMAIL +
-          '?subject=' + encodeURIComponent(data.get('subject')) +
-          '&body=' + encodeURIComponent(body);
-        return;
-      }
-
-      setBusy(true);
-      if (flow) flowTo(1);
-      // Le trajet a toujours le temps d'être lu, même si l'API répond instantanément
-      Promise.all([
-        loadEmailJS().then(function (ejs) { return ejs.sendForm(EMAILJS.serviceId, EMAILJS.templateId, form); }),
-        wait(520)
-      ])
-        .then(function () {
-          if (flow) { flowStep(2); flow.classList.add('is-done'); }
-          feedback.className = 'cf-feedback is-ok';
-          feedback.innerHTML = '<span class="cf-code">200 OK</span>' + t('form.ok.short');
-          form.reset();
-        }, function () {
-          if (flowMiddle) flowMiddle.classList.add('is-error');
-          setFeedback('error', 'form.err');
-        })
-        .then(function () { setBusy(false); });
-    });
-  }
-
-  /* ---------------------------------------------------------------
      Démonstration : isolation multi-tenant
      Une vente porte un tenant_id ; seule l'entreprise ciblée la voit.
      Le tableau de bord reprend la carte « En direct » de la landing Tchakeda :
@@ -349,8 +220,8 @@
      --------------------------------------------------------------- */
   var demo = $('#tenant-demo');
   if (demo) {
-    var TENANTS = 214;
-    var COLS = 18;
+    var TENANTS = 300;
+    var COLS = 20;
     var grid = $('#td-grid', demo);
     var sendBtn = $('#td-send', demo);
     var steps = $$('.td-node, .td-link', demo);
@@ -369,6 +240,9 @@
     var states = {};
     var shown = null;
     var focusIndex = 86;
+    var paper = $('#rc-paper', demo);
+    var CASHIERS = ['Awa', 'Moussa', 'Fatoumata', 'Ibrahim', 'Mariam', 'Seydou'];
+    var lastReceipt = null;
 
     function fmt(v) { return Math.round(v).toLocaleString('fr-FR').replace(/\s/g, ' '); }
 
@@ -458,6 +332,55 @@
       ui.events.insertAdjacentHTML('beforeend', eventHTML(sale));
     }
 
+    /* ---- Le reçu : même structure que le vrai reçu Tchakeda ---- */
+    function pad2(n) { return (n < 10 ? '0' : '') + n; }
+    function barcode(seed) {
+      var x = 0, bars = '', v = seed;
+      while (x < 196) {
+        v = (v * 9301 + 49297) % 233280;
+        var w = 1 + (v % 3);
+        if ((v >> 3) % 2) bars += '<rect x="' + x + '" y="0" width="' + w + '" height="32"/>';
+        x += w + 1;
+      }
+      return '<svg class="rc-bars" viewBox="0 0 200 32" preserveAspectRatio="none" aria-hidden="true">' + bars + '</svg>';
+    }
+    function receiptHTML(r) {
+      var d = r.date;
+      var when = pad2(d.getDate()) + '/' + pad2(d.getMonth() + 1) + '/' + d.getFullYear() + ' ' + pad2(d.getHours()) + ':' + pad2(d.getMinutes());
+      return '<div class="rc">' +
+        '<p class="rc-shop" lang="bm">Feere kɛ yɔrɔ</p>' +
+        '<p class="rc-store">' + r.store + '</p>' +
+        '<p class="rc-meta">' + t('rc.ticket') + ' : ' + r.num + '<br>' + when + '<br>' + t('rc.by') + ' : ' + r.cashier + ' · ' + t('rc.tenant') + ' ' + r.id + '</p>' +
+        '<p class="rc-row"><span>' + r.item + ' &nbsp;1<small>' + fmt(r.price) + ' F / ' + t('rc.unit') + '</small></span><span>' + fmt(r.price) + ' F</span></p>' +
+        '<p class="rc-row rc-total"><span>' + t('rc.total') + '</span><span>' + fmt(r.price) + ' F</span></p>' +
+        '<p class="rc-row"><span>' + t('rc.cash') + '</span><span>' + fmt(r.cash) + ' F</span></p>' +
+        '<p class="rc-row"><span>' + t('rc.change') + '</span><span>' + fmt(r.cash - r.price) + ' F</span></p>' +
+        barcode(+r.num.slice(-6)) +
+        '<p class="rc-gen">' + t('rc.gen') + '</p>' +
+        '<p class="rc-only">' + t('rc.only').replace('{id}', r.id) + '</p>' +
+      '</div>';
+    }
+    function idleReceipt() { paper.innerHTML = '<p class="rc-idle">' + t('rc.idle') + '</p>'; }
+
+    // L'ancien reçu est arraché, le nouveau sort de la fente par à-coups, comme une imprimante thermique
+    function printReceipt(r) {
+      lastReceipt = r;
+      var old = paper.firstElementChild;
+      var wrap = doc.createElement('div');
+      wrap.innerHTML = receiptHTML(r);
+      var next = wrap.firstChild;
+      var still = reduceMotion.matches || !next.animate;
+      function show() {
+        paper.innerHTML = '';
+        paper.appendChild(next);
+        if (!still) next.animate([{ transform: 'translateY(-101%)' }, { transform: 'none' }], { duration: 1050, easing: 'steps(14, end)' });
+      }
+      if (old && old.classList.contains('rc') && !still) {
+        old.animate([{ transform: 'none', opacity: 1 }, { transform: 'translateY(28px) rotate(4deg)', opacity: 0 }],
+          { duration: 260, easing: 'cubic-bezier(0.55, 0, 1, 0.45)', fill: 'forwards' }).onfinish = show;
+      } else show();
+    }
+
     for (var i = 0; i < TENANTS; i++) {
       var cell = doc.createElement('button');
       cell.type = 'button';
@@ -474,6 +397,8 @@
       var word = t('demo.cell');
       cells.forEach(function (c) { c.setAttribute('aria-label', word + ' ' + c.getAttribute('data-id')); });
       if (shown) ui.events.innerHTML = eventHTML(stateOf(shown).last);
+      // Le reçu affiché suit la langue, sans se réimprimer
+      if (lastReceipt) paper.innerHTML = receiptHTML(lastReceipt); else idleReceipt();
     }
     labelCells();
     $$('.lang-btn').forEach(function (btn) { btn.addEventListener('click', labelCells); });
@@ -543,6 +468,12 @@
         }
         target.classList.add('is-landed');
         pushEvent(sale);
+        printReceipt({
+          id: id, store: st.store, item: sale[0], price: sale[1],
+          cash: Math.ceil((sale[1] + 1) / 5000) * 5000,
+          num: String(Date.now()).slice(-12), date: new Date(),
+          cashier: CASHIERS[(id + st.n) % CASHIERS.length]
+        });
       });
       at(1180, function () { ui.stock.textContent = fmt(st.stock); flash(ui.stock); });
       at(1340, function () { ui.sales.textContent = fmt(st.sales); flash(ui.sales); });
@@ -823,6 +754,49 @@
     $('.scene-replay', wallet).addEventListener('click', function () { runWallet(true); });
     $$('.lang-btn').forEach(function (b) { b.addEventListener('click', renderToast); });
     playWhenVisible(wallet, function () { runWallet(false); });
+  }
+
+  // GesCabinet — comme Smart Agro : le mobile du patient et le site de la clinique, reliés par la même API.
+  // 1) le rendez-vous pris sur l'app arrive dans l'agenda ; 2) le patient écrit au support, la clinique répond.
+  var gcScene = $('#scene-gc');
+  if (gcScene) {
+    var gcc = sceneClock();
+    var gcCount = $('[data-gc="count"]', gcScene);
+    var GC = ['is-pick', 'is-press', 'is-booked', 'is-chat', 'is-q', 'is-qweb', 'is-typing', 'is-a', 'is-aphone',
+      'is-up', 'is-down', 'is-up-rev', 'is-down-rev', 'is-api'];
+    // Sans JS, la scène montre son état final ; avec JS, elle part du début
+    gcScene.classList.add('is-run');
+    gcCount.textContent = '12';
+
+    function runGc() {
+      gcc.clear();
+      gcc.speed = 0.8;
+      GC.forEach(function (c) { gcScene.classList.remove(c); });
+      gcCount.textContent = '12';
+      // 1. Rendez-vous : mobile → API → agenda du site
+      gcc.at(350, function () { gcScene.classList.add('is-pick'); });
+      gcc.at(950, function () { gcScene.classList.add('is-press'); });
+      gcc.at(1050, function () { restartClass(gcScene, 'is-up'); });
+      gcc.at(1600, function () { gcScene.classList.add('is-api'); restartClass(gcScene, 'is-down'); });
+      gcc.at(2150, function () {
+        gcScene.classList.remove('is-api');
+        gcScene.classList.add('is-booked');
+        gcc.tween(gcCount, 12, 13, 450);
+      });
+      // 2. Support médical : la question monte, la réponse redescend
+      gcc.at(3000, function () { gcScene.classList.add('is-chat'); });
+      gcc.at(3450, function () { gcScene.classList.add('is-q'); });
+      gcc.at(3600, function () { restartClass(gcScene, 'is-up'); });
+      gcc.at(4150, function () { gcScene.classList.add('is-api'); restartClass(gcScene, 'is-down'); });
+      gcc.at(4700, function () { gcScene.classList.remove('is-api'); gcScene.classList.add('is-qweb', 'is-typing'); });
+      gcc.at(5600, function () { gcScene.classList.remove('is-typing'); gcScene.classList.add('is-a'); });
+      gcc.at(5750, function () { gcScene.classList.add('is-api'); restartClass(gcScene, 'is-down-rev'); });
+      gcc.at(6300, function () { restartClass(gcScene, 'is-up-rev'); });
+      gcc.at(6850, function () { gcScene.classList.remove('is-api'); gcScene.classList.add('is-aphone'); });
+    }
+
+    $('.scene-replay', gcScene).addEventListener('click', runGc);
+    playWhenVisible(gcScene, runGc);
   }
 
   // Smart Agro — un réseau social agricole : une publication part du mobile,
