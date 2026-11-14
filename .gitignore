@@ -19,6 +19,8 @@ assets/img/*.JPG
 assets/img/*.JPEG
 !assets/img/favicon.JPEG
 assets/img/*.PNG
+# macOS ne distingue pas .PNG et .png : on garde explicitement le favicon de secours
+!assets/img/favicon-32.png
 assets/img/*.jpeg
 assets/img/fof1.png
 assets/img/favicon1.png

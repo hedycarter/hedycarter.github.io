@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Page introuvable — Hady Fofana</title>
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#0b0f17">
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/assets/img/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    /* Page autonome (servie à n'importe quelle adresse) : mêmes couleurs que le hero du site */
+    :root { --dark: #0b0f17; --dark-2: #141a26; --on-dark: #eef1f6; --muted: #9aa3b2; --border: rgba(255,255,255,.12); --request: #8fa8ff; --accent: #2b5cff; --ok: #4ade80; }
+    * { box-sizing: border-box; margin: 0; }
+    html, body { height: 100%; }
+    body {
+      display: grid; place-items: center; padding: 24px;
+      background: var(--dark); color: var(--muted);
+      font: 16px/1.6 Inter, system-ui, -apple-system, "Segoe UI", sans-serif;
+    }
+    main { width: 100%; max-width: 560px; }
+    .eyebrow { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; font: 13px "JetBrains Mono", ui-monospace, monospace; }
+    .eyebrow::before { content: ""; width: 28px; height: 1px; background: var(--request); }
+    h1 { margin-bottom: 14px; font-size: clamp(32px, 7vw, 48px); line-height: 1.05; letter-spacing: -0.035em; color: #fff; }
+    p.lead { margin-bottom: 28px; font-size: 18px; }
+    .log {
+      display: grid; gap: 6px; margin-bottom: 32px; padding: 14px 16px;
+      border: 1px solid var(--border); border-radius: 8px; background: var(--dark-2);
+      font: 13px/1.5 "JetBrains Mono", ui-monospace, monospace; color: var(--on-dark); overflow-wrap: anywhere;
+    }
+    .dim { color: var(--muted); }
+    .err { color: #f87171; }
+    .ok { color: var(--ok); }
+    .actions { display: flex; flex-wrap: wrap; gap: 12px; }
+    a.btn {
+      display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 20px;
+      border: 1px solid var(--border); border-radius: 8px;
+      font-weight: 600; font-size: 15px; color: var(--on-dark); text-decoration: none;
+      transition: background-color .16s, border-color .16s;
+    }
+    a.btn:hover { border-color: var(--on-dark); }
+    a.btn--primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+    a.btn--primary:hover { background: #1f47d6; border-color: #1f47d6; }
+    .en { margin-top: 28px; font-size: 13px; }
+    .en a { color: var(--on-dark); }
+    @media (prefers-reduced-motion: no-preference) {
+      .log p { opacity: 0; animation: line .3s ease-out forwards; }
+      .log p:nth-child(2) { animation-delay: .35s; }
+      .log p:nth-child(3) { animation-delay: .7s; }
+      @keyframes line { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <p class="eyebrow">Erreur 404</p>
+    <h1>Cette page n'existe pas.</h1>
+    <p class="lead">Le lien est peut-être ancien ou mal copié. Le reste du site, lui, répond.</p>
+    <div class="log" aria-hidden="true">
+      <p><span class="dim">GET</span> <span id="path">/page</span></p>
+      <p><span class="err">404 Not Found</span> <span class="dim">· aucune ressource à cette adresse</span></p>
+      <p><span class="ok">→</span> <span class="dim">redirection proposée :</span> /</p>
+    </div>
+    <div class="actions">
+      <a class="btn btn--primary" href="/">Retour à l'accueil →</a>
+      <a class="btn" href="/#portfolio">Voir les projets</a>
+    </div>
+    <p class="en">Page not found. <a href="/">Back to the home page</a>.</p>
+  </main>
+  <script>
+    // Affiche l'adresse réellement demandée dans le journal
+    var p = document.getElementById('path');
+    if (p) p.textContent = decodeURIComponent(location.pathname + location.search).slice(0, 80);
+  </script>
+</body>
+</html>

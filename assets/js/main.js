@@ -128,18 +128,33 @@
   // Quand motion.js (GSAP) est actif, c'est lui qui révèle les blocs ; il prévient ici.
   doc.addEventListener('reveal-in', function (e) { $$('[data-count]', e.target).forEach(countUp); });
 
-  if (!window.__motion && 'IntersectionObserver' in window) {
+  // Entrées au scroll : un seul observateur pour les blocs, les titres de section et les
+  // visuels de projets. Il ajoute .is-in, le CSS anime (voir « Entrées au scroll » dans style.css).
+  var ENTER = '.reveal, .sec-head h2, .project .tour-view, .project .project-media';
+  function entered(el) {
+    el.classList.add('is-in');
+    el.dispatchEvent(new CustomEvent('reveal-in', { bubbles: true }));
+    // Le volet terminé, on retire le masque (l'ombre portée redevient visible)
+    if (el.matches('.tour-view, .project-media')) {
+      el.addEventListener('transitionend', function done(e) {
+        if (e.propertyName !== 'clip-path') return;
+        el.classList.add('is-done');
+        el.removeEventListener('transitionend', done);
+      });
+      if (reduceMotion.matches) el.classList.add('is-done');
+    }
+  }
+  if ('IntersectionObserver' in window) {
     var revealer = new IntersectionObserver(function (entries, obs) {
       entries.forEach(function (entry) {
         if (!entry.isIntersecting) return;
-        entry.target.classList.add('is-in');
-        $$('[data-count]', entry.target).forEach(countUp);
         obs.unobserve(entry.target);
+        entered(entry.target);
       });
-    }, { threshold: 0.15, rootMargin: '0px 0px -8% 0px' });
-    $$('.reveal').forEach(function (el) { revealer.observe(el); });
-  } else if (!window.__motion) {
-    $$('.reveal').forEach(function (el) { el.classList.add('is-in'); });
+    }, { rootMargin: '0px 0px -10% 0px' });
+    $$(ENTER).forEach(function (el) { revealer.observe(el); });
+  } else {
+    $$(ENTER).forEach(entered);
   }
 
   /* ---------------------------------------------------------------
@@ -152,6 +167,13 @@
   function showModal(modal, trigger) {
     lastTrigger = trigger || doc.activeElement;
     openModal = modal;
+    // Les captures du case study ne se chargent qu'à la première ouverture
+    $$('img[data-src]', modal).forEach(function (img) {
+      if (img.dataset.srcset) img.srcset = img.dataset.srcset;
+      img.src = img.dataset.src;
+      delete img.dataset.src;
+      delete img.dataset.srcset;
+    });
     modal.inert = false;
     modal.classList.add('is-open');
     doc.body.classList.add('is-locked');
@@ -424,7 +446,8 @@
       steps.forEach(function (el) { if (el.getAttribute('data-step') === String(n)) el.classList.add('is-on'); });
     }
 
-    function run(id) {
+    // byVisitor : vrai quand c'est le visiteur qui a cliqué (pas la vente jouée à l'arrivée)
+    function run(id, byVisitor) {
       clearRun();
       var st = stateOf(id);
       var sale = PRODUCTS[st.n % PRODUCTS.length];
@@ -474,6 +497,8 @@
           num: String(Date.now()).slice(-12), date: new Date(),
           cashier: CASHIERS[(id + st.n) % CASHIERS.length]
         });
+        // Le ticket de visite (Contact) reprend cette vente
+        doc.dispatchEvent(new CustomEvent('td-sale', { detail: { id: id, store: st.store, price: sale[1], byVisitor: !!byVisitor } }));
       });
       at(1180, function () { ui.stock.textContent = fmt(st.stock); flash(ui.stock); });
       at(1340, function () { ui.sales.textContent = fmt(st.sales); flash(ui.sales); });
@@ -494,9 +519,9 @@
 
     grid.addEventListener('click', function (e) {
       var c = e.target.closest('.td-cell');
-      if (c) run(parseInt(c.getAttribute('data-id'), 10));
+      if (c) run(parseInt(c.getAttribute('data-id'), 10), true);
     });
-    sendBtn.addEventListener('click', function () { run(randomTenant()); });
+    sendBtn.addEventListener('click', function () { run(randomTenant(), true); });
 
     // Navigation clavier dans la grille (un seul arrêt de tabulation)
     grid.addEventListener('keydown', function (e) {
@@ -527,6 +552,91 @@
   }
 
   /* ---------------------------------------------------------------
+     Ticket de visite (Contact) : la page se termine comme la démo,
+     par un reçu. Il ne contient que du vrai : les projets que le
+     visiteur a eus à l'écran et la dernière vente de la démo.
+     L'e-mail est pré-rempli ; si le visiteur a lui-même encaissé une
+     vente, le message le rappelle.
+     --------------------------------------------------------------- */
+  var visitPaper = $('#visit-paper');
+  if (visitPaper) {
+    var MAIL = 'hadyfofana72@gmail.com';
+    var projects = $$('#portfolio .project');
+    var seen = {};
+    var visitSale = null;
+    var visitPrinted = false;
+    var nf = function (v) { return Math.round(v).toLocaleString('fr-FR').replace(/\s/g, ' '); };
+    var two = function (n) { return (n < 10 ? '0' : '') + n; };
+
+    function mailLinks() {
+      var body = t('mail.body');
+      if (visitSale && visitSale.byVisitor) body += '\n\n' + t('mail.ps').replace('{id}', visitSale.id);
+      var href = 'mailto:' + MAIL + '?subject=' + encodeURIComponent(t('mail.subject')) + '&body=' + encodeURIComponent(body);
+      $$('[data-mail]').forEach(function (a) { a.href = href; });
+    }
+    function visitBars(seed) {
+      var x = 0, bars = '', v = seed;
+      while (x < 196) {
+        v = (v * 9301 + 49297) % 233280;
+        var w = 1 + (v % 3);
+        if ((v >> 3) % 2) bars += '<rect x="' + x + '" y="0" width="' + w + '" height="32"/>';
+        x += w + 1;
+      }
+      return '<svg class="rc-bars" viewBox="0 0 200 32" preserveAspectRatio="none" aria-hidden="true">' + bars + '</svg>';
+    }
+    function visitHTML() {
+      var d = new Date();
+      var when = two(d.getDate()) + '/' + two(d.getMonth() + 1) + '/' + d.getFullYear() + ' ' + two(d.getHours()) + ':' + two(d.getMinutes());
+      var demoLine = visitSale ? t('visit.tenant').replace('{id}', visitSale.id) + ' · ' + nf(visitSale.price) + ' F' : t('visit.demo.none');
+      return '<div class="rc visit-rc">' +
+        '<p class="rc-shop">' + t('visit.title') + '</p>' +
+        '<p class="rc-store">Hady Fofana</p>' +
+        '<p class="rc-meta">' + when + '</p>' +
+        '<p class="rc-row"><span>' + t('visit.seen') + '</span><span>' + Object.keys(seen).length + ' / ' + projects.length + '</span></p>' +
+        '<p class="rc-row"><span>' + t('visit.demo') + '</span><span>' + demoLine + '</span></p>' +
+        '<p class="rc-row"><span>' + t('visit.cross') + '</span><span>0</span></p>' +
+        '<p class="rc-row rc-total"><span>' + t('visit.next') + '</span><span>' + t('visit.next.v') + '</span></p>' +
+        visitBars(d.getHours() * 60 + d.getMinutes() + 7) +
+        '<p class="rc-only">' + t('visit.only') + '</p>' +
+      '</div>';
+    }
+    // Imprimé une fois, quand le Contact arrive à l'écran : il sort de la fente par à-coups
+    function printVisit(animated) {
+      visitPaper.innerHTML = visitHTML();
+      var rc = visitPaper.firstElementChild;
+      if (animated && !reduceMotion.matches && rc.animate) {
+        rc.animate([{ transform: 'translateY(-101%)' }, { transform: 'none' }], { duration: 1200, easing: 'steps(16, end)' });
+      }
+      visitPrinted = true;
+    }
+
+    doc.addEventListener('td-sale', function (e) {
+      visitSale = e.detail;
+      mailLinks();
+      if (visitPrinted) printVisit(false);
+    });
+    doc.addEventListener('langchange', function () { mailLinks(); if (visitPrinted) printVisit(false); });
+    mailLinks();
+
+    var contactSection = $('#contact');
+    if ('IntersectionObserver' in window) {
+      var seenObs = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) {
+          if (en.isIntersecting) { seen[en.target.id] = true; seenObs.unobserve(en.target); }
+        });
+      }, { threshold: 0.3 });
+      projects.forEach(function (p) { seenObs.observe(p); });
+      new IntersectionObserver(function (entries, obs) {
+        if (!entries[0].isIntersecting) return;
+        obs.disconnect();
+        printVisit(true);
+      }, { threshold: 0.35 }).observe(contactSection);
+    } else {
+      printVisit(false);
+    }
+  }
+
+  /* ---------------------------------------------------------------
      Bobines : extraits vidéo des projets (landing Tchakeda, site Groupe ATC)
      Rien n'est téléchargé avant que la bobine soit visible ; lecture
      automatique seulement si le visiteur accepte le mouvement.
@@ -539,6 +649,16 @@
     var loaded = null;
     var visible = false;
     var userPaused = reduceMotion.matches;
+
+    // L'image d'attente n'est téléchargée qu'à l'approche de la bobine
+    if (video.dataset.poster) {
+      var setPoster = function () { if (!video.poster) video.poster = video.dataset.poster; };
+      if ('IntersectionObserver' in window) {
+        new IntersectionObserver(function (entries, obs) {
+          if (entries[0].isIntersecting) { setPoster(); obs.disconnect(); }
+        }, { rootMargin: '800px 0px' }).observe(reel);
+      } else setPoster();
+    }
 
     function setSources(name) {
       video.poster = 'assets/video/' + name + '.webp';
@@ -625,7 +745,7 @@
 
   /* ---------------------------------------------------------------
      Scènes codées : chacune raconte l'architecture réelle de son projet.
-     Jouées une fois quand elles deviennent visibles, puis à la demande.
+     Jouées en boucle tant qu'elles sont à l'écran ; les boutons relancent.
      --------------------------------------------------------------- */
   function sceneClock() {
     var timers = [];
@@ -653,13 +773,43 @@
     return clock;
   }
 
-  function playWhenVisible(el, run) {
-    if (!('IntersectionObserver' in window)) { run(); return; }
-    new IntersectionObserver(function (entries, obs) {
-      if (!entries[0].isIntersecting) return;
-      obs.disconnect();
-      setTimeout(run, reduceMotion.matches ? 0 : 300);
-    }, { threshold: 0.5 }).observe(el);
+  // Lecture en boucle tant que la scène est à l'écran : elle va au bout, l'image
+  // finale reste lisible (holdMs), puis la scène s'efface et repart du début.
+  // run() renvoie sa durée en ms. Hors écran, le tour en cours finit et la boucle
+  // attend le retour de la scène. Mouvement réduit : un seul passage (état final).
+  function loopScene(el, run, holdMs) {
+    var stage = $('.scene-stage', el) || el;
+    var timer = 0, visible = false, waiting = false;
+    function cycle(fn) {
+      clearTimeout(timer);
+      waiting = false;
+      var ms = (fn || run)();
+      if (!reduceMotion.matches) timer = setTimeout(next, ms + holdMs);
+    }
+    function next() {
+      if (!visible || document.hidden) { waiting = true; return; }
+      var out = stage.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 260, easing: 'ease-in', fill: 'forwards' });
+      out.onfinish = function () {
+        cycle();
+        out.cancel();
+        stage.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 320, easing: 'ease-out' });
+      };
+    }
+    function resume() { if (waiting && visible && !document.hidden) next(); }
+    document.addEventListener('visibilitychange', resume);
+    if ('IntersectionObserver' in window) {
+      var first = true;
+      new IntersectionObserver(function (entries) {
+        visible = entries[0].isIntersecting;
+        if (visible && first) { first = false; setTimeout(function () { cycle(); }, reduceMotion.matches ? 0 : 300); }
+        else resume();
+      }, { threshold: 0.5 }).observe(el);
+    } else {
+      visible = true;
+      cycle();
+    }
+    // Pour les boutons (rejouer, publier) : relance tout de suite et recale la boucle
+    return { play: function (fn) { cycle(fn); } };
   }
 
   function restartClass(el, cls) {
@@ -744,16 +894,18 @@
         wallet.classList.add('is-card');
         toast('sw.tx.card', '', '');
       });
-      if (!full) { wc.at(5600, function () { wallet.classList.remove('is-toast'); }); return; }
+      if (!full) { wc.at(5600, function () { wallet.classList.remove('is-toast'); }); return (5600 + 300) * wc.speed; }
       // Assistance : le client écrit, l'agent répond
       wc.at(7200, function () { wallet.classList.remove('is-toast'); wallet.classList.add('is-chat', 'is-q'); });
       wc.at(7900, function () { wallet.classList.add('is-typing'); });
       wc.at(9000, function () { wallet.classList.remove('is-typing'); wallet.classList.add('is-a'); });
+      return (9000 + 500) * wc.speed;
     }
 
-    $('.scene-replay', wallet).addEventListener('click', function () { runWallet(true); });
+    // En boucle : la version courte ; le bouton rejoue la version complète (échéance, assistance)
+    var walletLoop = loopScene(wallet, function () { return runWallet(false); }, 2500);
+    $('.scene-replay', wallet).addEventListener('click', function () { walletLoop.play(function () { return runWallet(true); }); });
     $$('.lang-btn').forEach(function (b) { b.addEventListener('click', renderToast); });
-    playWhenVisible(wallet, function () { runWallet(false); });
   }
 
   // GesCabinet — comme Smart Agro : le mobile du patient et le site de la clinique, reliés par la même API.
@@ -793,10 +945,11 @@
       gcc.at(5750, function () { gcScene.classList.add('is-api'); restartClass(gcScene, 'is-down-rev'); });
       gcc.at(6300, function () { restartClass(gcScene, 'is-up-rev'); });
       gcc.at(6850, function () { gcScene.classList.remove('is-api'); gcScene.classList.add('is-aphone'); });
+      return (6850 + 400) * gcc.speed;
     }
 
-    $('.scene-replay', gcScene).addEventListener('click', runGc);
-    playWhenVisible(gcScene, runGc);
+    var gcLoop = loopScene(gcScene, runGc, 2500);
+    $('.scene-replay', gcScene).addEventListener('click', function () { gcLoop.play(); });
   }
 
   // Smart Agro — un réseau social agricole : une publication part du mobile,
@@ -925,6 +1078,8 @@
           ac.at(1300, chat);
         }
       });
+      // Durée totale : arrivée de la publication + délai avant la messagerie + messagerie (5 s)
+      return (3000 + (full ? 3400 : 1300) + 5000 + 400) * ac.speed;
     }
 
     function chat() {
@@ -949,9 +1104,14 @@
     renderFeeds();
     renderAlerts(false);
     setCache(true);
-    $('[data-sa="next"]', agro).addEventListener('click', function () { publish(true); });
     $$('.lang-btn').forEach(function (b) { b.addEventListener('click', function () { renderFeeds(); renderAlerts(false); }); });
-    playWhenVisible(agro, function () { cacheWarm = false; publish(false); });
+    // En boucle : la version courte (publication → J'aime → messagerie) ; « Publier » joue la version complète
+    var first = true;
+    var agroLoop = loopScene(agro, function () {
+      if (first) { first = false; cacheWarm = false; }
+      return publish(false);
+    }, 2500);
+    $('[data-sa="next"]', agro).addEventListener('click', function () { agroLoop.play(function () { return publish(true); }); });
   }
 
   /* ---------------------------------------------------------------

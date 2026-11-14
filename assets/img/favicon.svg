@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- Monogramme H sur le fond sombre du site ; le point bleu est la « requête » qui parcourt la page -->
+  <rect width="64" height="64" rx="14" fill="#0b0f17"/>
+  <path d="M14 16h7v13h12V16h7v32h-7V35H21v13h-7z" fill="#eef1f6"/>
+  <circle cx="50" cy="44" r="5" fill="#2b5cff"/>
+</svg>
