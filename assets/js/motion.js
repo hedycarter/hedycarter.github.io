@@ -486,7 +486,7 @@
       var done = false;
       function go() { if (!done) { done = true; fn(); } }
       if (doc.fonts && doc.fonts.load) {
-        Promise.all([doc.fonts.load('700 48px Inter'), doc.fonts.load('400 20px Inter')])
+        Promise.all([doc.fonts.load('600 48px Poppins'), doc.fonts.load('400 20px Inter')])
           .then(function () { return doc.fonts.ready; }).then(go, go);
         setTimeout(go, 700);
       } else { go(); }

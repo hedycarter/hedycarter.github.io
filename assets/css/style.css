@@ -392,15 +392,27 @@ button { font: inherit; color: inherit; }
   flex-shrink: 0;
 }
 
+/* Police de secours du titre : Arial ramenée à la largeur de Poppins semi-gras (mesurée : 105 %),
+   pour que le titre garde ses trois lignes pendant le chargement de la police (pas de saut). */
+@font-face {
+  font-family: "Poppins Fallback";
+  src: local("Arial");
+  size-adjust: 105%;
+}
 .hero-title {
-  /* Coupures choisies dans le texte (<br>), selon le sens : pas de petit mot seul en fin de ligne */
-  font-size: clamp(34px, 5vw, 64px);
-  font-weight: 700;
-  line-height: 1.02;
-  letter-spacing: -0.04em;
+  /* Coupures choisies dans le texte (<br>), selon le sens : pas de petit mot seul en fin de ligne.
+     Poppins pour le titre du hero seulement ; le reste du site reste en Inter.
+     Ligne la plus longue : 10,4 em ; 62 px = 642 px dans une colonne de 668 px. */
+  font-family: "Poppins", "Poppins Fallback", Arial, sans-serif;
+  font-size: clamp(36px, 4.6vw, 62px);
+  font-weight: 600;
+  line-height: 1.08;
+  letter-spacing: -0.02em;
   color: #fff;
   margin-bottom: 24px;
 }
+/* Le mot qui porte la promesse, à la couleur de la requête */
+.hero-title em { font-style: normal; color: var(--request-on-dark); }
 
 .hero-lead {
   max-width: 40ch;
@@ -496,8 +508,8 @@ button { font: inherit; color: inherit; }
   .hero { padding-top: calc(var(--header-h) + 32px); align-items: flex-start; }
   .hero-inner { grid-template-columns: 1fr; gap: 32px; }
   .hero-photo { order: -1; }
-  /* La plus longue ligne (« Je construis le logiciel ») tient dans la largeur de l'écran */
-  .hero-title { font-size: clamp(26px, 8.4vw, 52px); }
+  /* La plus longue ligne (« vos idées en produits », 10,4 em) tient dans la largeur de l'écran */
+  .hero-title { font-size: clamp(26px, 8.4vw, 46px); }
 }
 
 /* Mobile et tablette : la photo en grand, d'un bord à l'autre sous l'en-tête, cadrée sur le visage ;
