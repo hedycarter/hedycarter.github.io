@@ -107,7 +107,7 @@ window.I18N = {
     'gc.a': 'Buvez beaucoup d\'eau et reposez-vous. Si la fièvre dépasse 39 °C, appelez-nous.',
     'gc.input': 'Écrivez votre message…', 'gc.agenda': 'Agenda', 'gc.rdv': 'rdv',
     'gc.s.done': 'Terminé', 'gc.s.arrived': 'Arrivé', 'gc.s.confirmed': 'Confirmé', 'gc.s.app': 'Via l\'app',
-    'pf.ges.line': "Projet de fin de formation Orange Digital Kalanso, puis adapté aux besoins d'une clinique qui l'utilise aujourd'hui (nom confidentiel). Les patients prennent rendez-vous depuis leur mobile et écrivent au support médical ; la clinique gère son agenda et répond depuis le site.",
+    'pf.ges.line': "Développement d'une plateforme web de gestion de clinique permettant aux patients de prendre rendez-vous depuis leur mobile et de communiquer avec le support médical. La solution permet également au personnel de la clinique de gérer les rendez-vous, organiser les disponibilités et répondre aux demandes des patients depuis une interface d'administration.",
     'tk.cap1.t': 'Douze modules, un seul tableau de bord', 'tk.cap1.p': 'Produits, ventes, point de vente, stocks, facturation, journal, clients, boutiques, utilisateurs, fournisseurs, inventaire, codes-barres.',
     'tk.cap2.t': 'Une caisse pensée pour aller vite', 'tk.cap2.p': 'Catégories avec leur nombre de produits, stocks affichés, panier et pavé numérique pour la quantité, la remise et le prix.',
     'tk.cap3.t': 'Quatre modes de paiement', 'tk.cap3.p': 'Espèces, mobile money, carte ou crédit, avec le montant à rendre calculé.',
