@@ -6,7 +6,7 @@ window.I18N = {
     'nav.cv': 'CV', 'nav.menu': 'Menu', 'nav.close': 'Fermer le menu',
     'hero.cta1': 'Voir mes projets', 'hero.cta2': 'Me contacter',
     'about.h3': "Du backend à l'interface, avec l'outil qui convient au problème.",
-    'about.p1': "Développeur full stack depuis plus de 4 ans, je conçois des logiciels de bout en bout&nbsp;: API, interfaces web et mobiles, bases de données, déploiement. Depuis février&nbsp;2025, je dirige le département développement du <strong>Groupe Xpert Pro</strong>&nbsp;: architecture, choix techniques, sécurité et accompagnement de l'équipe.",
+    'about.p1': "Développeur full stack depuis plus de 5 ans, je conçois des logiciels de bout en bout&nbsp;: API, interfaces web et mobiles, bases de données, déploiement. Depuis février&nbsp;2025, je dirige le département développement du <strong>Groupe Xpert Pro</strong>&nbsp;: architecture, choix techniques, sécurité et accompagnement de l'équipe.",
     'about.p2': "Je ne m'enferme pas dans une stack&nbsp;: Spring Boot et Angular pour un SaaS multi-tenant, Ionic pour une application de microfinance, HTML, CSS et JavaScript sans framework pour des sites rapides et animés, PHP, Symfony et WordPress pour des projets clients.",
     'sec.about': 'Profil', 'sec.resume': 'Parcours',
 'sec.portfolio': 'Mes Projets',
